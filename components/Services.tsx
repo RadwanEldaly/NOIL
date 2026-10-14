@@ -26,19 +26,18 @@ export default function Services() {
             <div key={service.title} className="border-b border-line">
               <button
                 onClick={() => setOpenIndex(isOpen ? -1 : i)}
-                data-cursor="hover"
-                className="w-full flex items-center justify-between gap-6 py-8 md:py-10 text-left group"
+                className="w-full flex items-center justify-between gap-4 sm:gap-6 py-7 md:py-10 text-left group"
                 aria-expanded={isOpen}
               >
-                <span className="font-mono text-sm text-smoke w-10 shrink-0">
+                <span className="font-mono text-xs sm:text-sm text-smoke w-8 sm:w-10 shrink-0">
                   {service.index}
                 </span>
-                <span className="font-display italic text-[clamp(1.5rem,4vw,3rem)] leading-none flex-1 group-hover:text-accent transition-colors duration-300">
+                <span className="font-display italic text-[clamp(1.35rem,4vw,3rem)] leading-[1.15] flex-1 min-w-0 group-hover:text-accent transition-colors duration-200">
                   {service.title}
                 </span>
                 <motion.span
                   animate={{ rotate: isOpen ? 45 : 0 }}
-                  transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+                  transition={{ duration: 0.2, ease: "easeOut" }}
                   className="text-2xl font-light shrink-0"
                   aria-hidden="true"
                 >
@@ -52,10 +51,10 @@ export default function Services() {
                     initial={{ height: 0, opacity: 0 }}
                     animate={{ height: "auto", opacity: 1 }}
                     exit={{ height: 0, opacity: 0 }}
-                    transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+                    transition={{ duration: 0.25, ease: "easeOut" }}
                     className="overflow-hidden"
                   >
-                    <div className="pl-10 md:pl-16 pb-10 md:pb-12 flex flex-col md:flex-row gap-6 md:gap-16">
+                    <div className="pl-4 sm:pl-10 md:pl-16 pb-8 md:pb-12 flex flex-col md:flex-row gap-6 md:gap-16">
                       <p className="font-body text-bone-dim leading-relaxed max-w-md">
                         {service.description}
                       </p>

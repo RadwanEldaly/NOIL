@@ -12,25 +12,22 @@
 
 html {
   scroll-behavior: smooth;
-  background: #0b0b0c;
+  background: #121417;
 }
 
 body {
-  background-color: #0b0b0c;
-  color: #f2efea;
-  overflow-x: hidden;
-  cursor: none;
+  background-color: #121417;
+  color: #F4F4F5;
 }
 
-@media (hover: none), (pointer: coarse) {
-  body {
-    cursor: auto;
-  }
+button,
+a {
+  cursor: pointer;
 }
 
 ::selection {
-  background: #ff3b2e;
-  color: #0b0b0c;
+  background: #00A67E;
+  color: #121417;
 }
 
 /* Scrollbar — thin, dark, unobtrusive */
@@ -38,60 +35,11 @@ body {
   width: 6px;
 }
 ::-webkit-scrollbar-track {
-  background: #0b0b0c;
+  background: #121417;
 }
 ::-webkit-scrollbar-thumb {
-  background: #232324;
+  background: #27272A;
   border-radius: 0;
-}
-
-/* Film grain overlay */
-.grain-overlay {
-  pointer-events: none;
-  position: fixed;
-  inset: 0;
-  z-index: 60;
-  opacity: 0.05;
-  mix-blend-mode: overlay;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-  animation: grainShift 8s steps(8) infinite;
-}
-
-@keyframes grainShift {
-  0%, 100% { transform: translate(0, 0); }
-  10% { transform: translate(-1%, -2%); }
-  30% { transform: translate(2%, 1%); }
-  50% { transform: translate(-2%, 2%); }
-  70% { transform: translate(1%, -1%); }
-  90% { transform: translate(-1%, 2%); }
-}
-
-/* Custom cursor */
-.cursor-dot {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 8px;
-  height: 8px;
-  background: #f2efea;
-  border-radius: 50%;
-  pointer-events: none;
-  z-index: 100;
-  transform: translate(-50%, -50%);
-  transition: opacity 0.2s ease;
-}
-
-.cursor-ring {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 40px;
-  height: 40px;
-  border: 1px solid rgba(242, 239, 234, 0.5);
-  border-radius: 50%;
-  pointer-events: none;
-  z-index: 100;
-  transform: translate(-50%, -50%);
 }
 
 /* Utility: eyebrow label */
@@ -100,7 +48,7 @@ body {
   font-size: 0.7rem;
   letter-spacing: 0.35em;
   text-transform: uppercase;
-  color: #6e6a64;
+  color: #71717A;
 }
 
 /* Utility: hairline divider */
@@ -110,8 +58,8 @@ body {
   background: linear-gradient(
     to right,
     transparent,
-    #232324 15%,
-    #232324 85%,
+    #27272A 15%,
+    #27272A 85%,
     transparent
   );
 }
@@ -119,7 +67,7 @@ body {
 /* Focus visibility for accessibility, without breaking the aesthetic */
 a:focus-visible,
 button:focus-visible {
-  outline: 1px solid #ff3b2e;
+  outline: 2px solid #00A67E;
   outline-offset: 4px;
 }
 
@@ -131,7 +79,12 @@ button:focus-visible {
   html {
     scroll-behavior: auto;
   }
-  .grain-overlay {
-    animation: none;
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
   }
 }

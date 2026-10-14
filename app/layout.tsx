@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Fraunces, Archivo, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
-import CustomCursor from "@/components/CustomCursor";
 
 const fraunces = Fraunces({
   subsets: ["latin"],
@@ -26,16 +25,64 @@ const jetbrains = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "NOIR — Senior Frontend & Shopify Developer",
+  title: "Radwan Eldaly — Shopify Developer | Custom Storefronts & UI",
   description:
-    "Senior Frontend & Shopify Developer specializing in Next.js, React, and headless Shopify. Available for freelance projects worldwide.",
-  metadataBase: new URL("https://noir.studio"),
-  openGraph: {
-    title: "NOIR — Senior Frontend & Shopify Developer",
-    description:
-      "Senior Frontend & Shopify Developer crafting premium digital experiences for brands that refuse to blend in.",
-    type: "website",
+    "Shopify Developer building custom storefront experiences with a focus on responsive UI, usability, and thoughtful theme customization.",
+  metadataBase: new URL("https://noil-delta.vercel.app"),
+  alternates: {
+    canonical: "https://noil-delta.vercel.app",
   },
+  openGraph: {
+    title: "Radwan Eldaly — Shopify Developer",
+    description:
+      "Building custom Shopify storefront experiences with a focus on responsive UI, usability, and thoughtful theme customization.",
+    url: "https://noil-delta.vercel.app",
+    siteName: "Radwan Eldaly Portfolio",
+    locale: "en_US",
+    type: "website",
+    images: [
+      {
+        url: "/images/radwan-eldaly.jpg",
+        width: 800,
+        height: 1000,
+        alt: "Radwan Eldaly — Shopify Developer",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Radwan Eldaly — Shopify Developer",
+    description:
+      "Building custom Shopify storefront experiences with a focus on responsive UI, usability, and thoughtful theme customization.",
+    creator: "@EldalyRadwan",
+    images: ["/images/radwan-eldaly.jpg"],
+  },
+};
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  name: "Radwan Eldaly",
+  jobTitle: "Shopify Developer",
+  url: "https://noil-delta.vercel.app",
+  image: "https://noil-delta.vercel.app/images/radwan-eldaly.jpg",
+  email: "mailto:radwaneldaly14@gmail.com",
+  sameAs: [
+    "https://linkedin.com/in/radwan-eldaly-a0b079353",
+    "https://x.com/EldalyRadwan",
+    "https://instagram.com/radwan.eldaly.1",
+  ],
+  description:
+    "Shopify Developer building custom storefront experiences with a focus on responsive UI, usability, and thoughtful theme customization.",
+  knowsAbout: [
+    "Shopify",
+    "Shopify Liquid",
+    "Theme Customization",
+    "Custom Shopify Sections",
+    "Responsive Design",
+    "Storefront UI",
+    "E-Commerce",
+  ],
 };
 
 export default function RootLayout({
@@ -45,6 +92,12 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={`${fraunces.variable} ${archivo.variable} ${jetbrains.variable}`}>
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+      </head>
       <body className="font-body bg-stage text-bone antialiased">
         <a
           href="#main"
@@ -52,8 +105,6 @@ export default function RootLayout({
         >
           Skip to content
         </a>
-        <div className="grain-overlay" aria-hidden="true" />
-        <CustomCursor />
         {children}
       </body>
     </html>

@@ -1,14 +1,17 @@
 "use client";
 
 import RevealText from "./RevealText";
+import { testimonials } from "@/lib/data";
 
 export default function CTA() {
+  const act = testimonials.length > 0 ? "Act VII" : "Act VI";
+
   return (
     <section
       id="contact"
       className="relative py-32 md:py-56 px-6 md:px-10 border-t border-line flex flex-col items-start"
     >
-      <span className="eyebrow mb-8">Act VII — Start Something</span>
+      <span className="eyebrow mb-8">{act} — Start Something</span>
 
       <RevealText
         text="Let's Build Your Next Chapter"
@@ -17,21 +20,20 @@ export default function CTA() {
       />
 
       <a
-        href="radwaneldaly14@gmail.com"
-        data-cursor="hover"
-        className="group mt-14 inline-flex items-center gap-6 border-b border-bone pb-3"
+        href="mailto:radwaneldaly14@gmail.com"
+        className="group mt-10 md:mt-14 inline-flex items-center justify-between sm:justify-start gap-4 sm:gap-6 border-b border-bone pb-3 max-w-full"
       >
-        <span className="font-display italic text-[clamp(1.5rem,4vw,2.5rem)]">
+        <span className="font-display italic text-[clamp(1.15rem,4vw,2.5rem)] break-all sm:break-normal">
           radwaneldaly14@gmail.com
         </span>
-        <span className="w-10 h-10 rounded-full border border-line flex items-center justify-center group-hover:border-accent group-hover:text-accent group-hover:translate-x-1 transition-all duration-300">
+        <span className="w-8 h-8 sm:w-10 sm:h-10 shrink-0 rounded-full border border-line flex items-center justify-center group-hover:border-accent group-hover:text-accent group-hover:translate-x-1 transition-all duration-300">
           →
         </span>
       </a>
 
       <p className="font-body text-bone-dim mt-10 max-w-md">
-        I take on a limited number of new freelance projects each quarter. Tell me
-        about your brand and timeline — I typically reply within 24 hours.
+        Available for Shopify storefront customization, UI implementation, and practical store improvements. Tell me
+        about your store goals and timeline — I typically reply within 24 hours.
       </p>
     </section>
   );

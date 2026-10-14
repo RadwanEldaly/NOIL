@@ -6,14 +6,22 @@ import { testimonials } from "@/lib/data";
 
 export default function Testimonials() {
   const [active, setActive] = useState(0);
+  const [isPaused, setIsPaused] = useState(false);
 
   useEffect(() => {
+    if (!testimonials || testimonials.length <= 1) return;
+    const prefersReducedMotion =
+      typeof window !== "undefined" &&
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (prefersReducedMotion || isPaused) return;
+
     const id = setInterval(() => {
       setActive((prev) => (prev + 1) % testimonials.length);
     }, 6000);
     return () => clearInterval(id);
-  }, []);
+  }, [isPaused]);
 
+  if (!testimonials || testimonials.length === 0) return null;
   const testimonial = testimonials[active];
   if (!testimonial) return null;
 
@@ -24,14 +32,20 @@ export default function Testimonials() {
     >
       <span className="eyebrow">Act VI — In Their Words</span>
 
-      <div className="min-h-[260px] md:min-h-[220px] flex items-center mt-10">
+      <div
+        className="min-h-[260px] md:min-h-[220px] flex items-center mt-10"
+        onMouseEnter={() => setIsPaused(true)}
+        onMouseLeave={() => setIsPaused(false)}
+        onFocus={() => setIsPaused(true)}
+        onBlur={() => setIsPaused(false)}
+      >
         <AnimatePresence mode="wait">
           <motion.blockquote
             key={active}
-            initial={{ opacity: 0, y: 24 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -24 }}
-            transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.25, ease: "easeOut" }}
             className="max-w-4xl"
           >
             <p className="font-display italic text-[clamp(1.75rem,5vw,3.5rem)] leading-[1.15] text-bone">
@@ -58,17 +72,18 @@ export default function Testimonials() {
             aria-selected={i === active}
             aria-label={`Show testimonial from ${t.name}`}
             onClick={() => setActive(i)}
-            data-cursor="hover"
-            className="h-px w-16 bg-line relative overflow-hidden"
+            className="h-10 w-16 flex items-center relative focus-visible:outline focus-visible:outline-2 focus-visible:outline-accent"
           >
-            {i === active && (
-              <motion.span
-                className="absolute inset-0 bg-accent origin-left"
-                initial={{ scaleX: 0 }}
-                animate={{ scaleX: 1 }}
-                transition={{ duration: 6, ease: "linear" }}
-              />
-            )}
+            <span className="h-px w-full bg-line relative overflow-hidden block">
+              {i === active && (
+                <motion.span
+                  className="absolute inset-0 bg-accent origin-left"
+                  initial={{ scaleX: 0 }}
+                  animate={{ scaleX: 1 }}
+                  transition={{ duration: 6, ease: "linear" }}
+                />
+              )}
+            </span>
           </button>
         ))}
       </div>

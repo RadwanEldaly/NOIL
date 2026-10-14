@@ -9,14 +9,15 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        stage: "#0B0B0C",
-        "stage-raised": "#141415",
-        bone: "#F2EFEA",
-        "bone-dim": "#C9C4BB",
-        smoke: "#6E6A64",
-        line: "#232324",
-        accent: "#FF3B2E",
-        "accent-dim": "#7A1F1A",
+        stage: "#121417",
+        "stage-raised": "#181B20",
+        "stage-surface": "#20242C",
+        bone: "#F4F4F5",
+        "bone-dim": "#A1A1AA",
+        smoke: "#71717A",
+        line: "#27272A",
+        accent: "#00A67E",
+        "accent-dim": "#008060",
       },
       fontFamily: {
         display: ["var(--font-fraunces)", "serif"],
@@ -37,28 +38,14 @@ const config: Config = {
         cinematic: "cubic-bezier(0.22, 1, 0.36, 1)",
         dolly: "cubic-bezier(0.65, 0, 0.35, 1)",
       },
-      backgroundImage: {
-        grain: "url('/grain.svg')",
-        "vignette-radial":
-          "radial-gradient(ellipse at 50% 30%, rgba(255,255,255,0.05), rgba(0,0,0,0) 60%)",
-      },
       keyframes: {
         marquee: {
           "0%": { transform: "translateX(0%)" },
           "100%": { transform: "translateX(-50%)" },
         },
-        grainShift: {
-          "0%, 100%": { transform: "translate(0,0)" },
-          "10%": { transform: "translate(-1%,-2%)" },
-          "30%": { transform: "translate(2%,1%)" },
-          "50%": { transform: "translate(-2%,2%)" },
-          "70%": { transform: "translate(1%,-1%)" },
-          "90%": { transform: "translate(-1%,2%)" },
-        },
       },
       animation: {
         marquee: "marquee 28s linear infinite",
-        grain: "grainShift 8s steps(8) infinite",
       },
     },
   },

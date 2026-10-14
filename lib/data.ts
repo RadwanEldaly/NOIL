@@ -1,5 +1,6 @@
 export type Showcase = {
-  video: { src: string };
+  video?: { src: string };
+  image?: { src: string; caption?: string };
 };
 
 export type Project = {
@@ -7,11 +8,14 @@ export type Project = {
   slug: string;
   title: string;
   client: string;
+  projectContext?: string;
   year: string;
   category: string;
   role: string;
   technologies: string[];
   coverVideo: string;
+  coverImage?: string;
+  mediaType: "image" | "video";
   excerpt: string;
   challenge: string;
   approach: string;
@@ -20,113 +24,172 @@ export type Project = {
   showcases: Showcase[];
 };
 
+export const flagshipProject = {
+  name: "Disney Kidz Storefront",
+  client: "Disney Kidz",
+  platform: "Shopify (Dawn Theme)",
+  role: "Shopify Theme Developer",
+  period: "2025 – 2026",
+  description:
+    "A comprehensive Shopify theme customization for a licensed children's apparel store. Work centered on mobile-first navigation architecture, custom campaign sections, interactive collection filters, and storefront usability improvements.",
+};
+
 export const projects: Project[] = [
   {
     index: "01",
-    slug: "disney-kidz-footer",
-    title: "Disney Kidz — Footer",
+    slug: "disney-kidz-navigation-drawer",
+    title: "Mobile Navigation Drawer & Category Architecture",
     client: "Disney Kidz",
+    projectContext: "Disney Kidz Storefront Customization",
     year: "2026",
-    category: "Shopify / E-Commerce",
+    category: "Shopify / Navigation & Mobile UX",
     role: "Shopify Theme Developer",
-    technologies: ["Shopify Liquid", "Custom CSS", "JavaScript", "Responsive Design"],
-    coverVideo: "/projects/Screen Recording 2026-08-03 163454.mp4",
+    technologies: ["Shopify Liquid", "Mobile Drawer", "UI Architecture", "Dawn Theme"],
+    coverVideo: "/projects/disney-kidz-menu-drawer.png",
+    coverImage: "/projects/disney-kidz-menu-drawer.png",
+    mediaType: "image",
     excerpt:
-      "A mobile-first hero section for a children's fashion store built on Shopify, featuring bold campaign typography and full-bleed lifestyle imagery.",
+      "A custom mobile slide-out navigation drawer designed to replace dense multi-level dropdowns with visual product category cards, promotional tags, and direct loyalty club integration.",
     challenge:
-      "The store needed a high-impact hero that communicated a seasonal campaign clearly on mobile while staying on-brand with the Disney licensing guidelines.",
+      "Standard mobile navigation menus for extensive clothing catalogs rely on plain text lists. On mobile viewports, this created friction for parents browsing for specific garments and hid important store services like sizing assistance and VIP perks.",
     approach:
-      "I built a fully responsive Liquid section with customizable headline, subtext, and CTA. The section adapts elegantly from a full-bleed desktop layout to a clean mobile card with optimized touch targets.",
+      "I developed a custom Liquid drawer section with card-style touch targets featuring category thumbnails, clear typography, and visual status badges ('FAST SHIP', 'POPULAR'). The drawer also integrates an account onboarding card ('Disney Kidz Club') and direct access to sizing support.",
     result:
-      "The hero became the primary traffic driver for the Back to School campaign, contributing to a measurable uplift in session-to-product-page conversion rates.",
+      "Delivered an intuitive, thumb-friendly navigation experience where key clothing departments and customer support are instantly recognizable without navigating through layers of text menus.",
+    stats: [
+      { label: "Platform", value: "Shopify Dawn" },
+      { label: "Architecture", value: "Visual Category Cards" },
+      { label: "Touch UX", value: "Mobile-First Drawer" },
+    ],
+    showcases: [
+      {
+        image: {
+          src: "/projects/disney-kidz-menu-drawer.png",
+          caption: "Primary navigation drawer with visual category cards, product thumbnails, and FAST SHIP / POPULAR badges",
+        },
+      },
+      {
+        image: {
+          src: "/projects/disney-kidz-menu-club.jpg",
+          caption: "Integrated loyalty club card, direct customer care shortcut, and social channels inside the drawer",
+        },
+      },
+    ],
+  },
+  {
+    index: "02",
+    slug: "disney-kidz-campaign-hero",
+    title: "Campaign Hero & Seasonal Banner Section",
+    client: "Disney Kidz",
+    projectContext: "Disney Kidz Storefront Customization",
+    year: "2026",
+    category: "Shopify / Custom Section",
+    role: "Shopify Theme Developer",
+    technologies: ["Shopify Liquid", "Custom CSS", "Theme Editor Schema", "Responsive UI"],
+    coverVideo: "/projects/Screen Recording 2026-08-03 163454.mp4",
+    mediaType: "video",
+    excerpt:
+      "A mobile-first campaign hero section built for a Shopify children's clothing store, pairing bold typography with responsive layout controls and theme customizer settings.",
+    challenge:
+      "The store needed a high-impact seasonal campaign banner that displayed legibly and scaled naturally across both mobile and desktop screens without text clipping or awkward breaks.",
+    approach:
+      "I built a custom Liquid section with customizable headline, subtext, and CTA settings in the Shopify theme editor, adapting gracefully down to narrow mobile viewports.",
+    result:
+      "Delivered a flexible campaign hero section directly configurable from the Shopify theme editor, providing a clean entry point for seasonal collections.",
     stats: [
       { label: "Platform", value: "Shopify" },
-      { label: "Device Focus", value: "Mobile-First" },
-      { label: "Launch", value: "Q3 2026" },
+      { label: "Focus", value: "Mobile-First" },
+      { label: "Component", value: "Custom Hero" },
     ],
     showcases: [
       { video: { src: "/projects/Screen Recording 2026-08-03 163454.mp4" } },
     ],
   },
   {
-    index: "02",
-    slug: "disney-kidz-add-to-cart",
-    title: "Disney Kidz — Add to cart",
+    index: "03",
+    slug: "disney-kidz-brand-carousel",
+    title: "Character & Brand Discovery Carousel",
     client: "Disney Kidz",
+    projectContext: "Disney Kidz Storefront Customization",
     year: "2026",
-    category: "Shopify / E-Commerce",
+    category: "Shopify / Interactive Component",
     role: "Shopify Theme Developer",
-    technologies: ["Shopify Liquid", "Custom JavaScript", "CSS Carousel", "Responsive Design"],
+    technologies: ["Shopify Liquid", "Vanilla JavaScript", "CSS Carousel", "Responsive Design"],
     coverVideo: "/projects/Screen Recording 2026-08-03 163620.mp4",
+    mediaType: "video",
     excerpt:
-      "A custom brand discovery carousel letting shoppers filter the entire catalogue by their child's favourite licensed character — built entirely in Shopify Liquid.",
+      "A custom brand discovery carousel letting shoppers filter collections by character — built in Shopify Liquid and vanilla JavaScript with smooth touch navigation.",
     challenge:
-      "The store stocks licensed clothing for dozens of IP brands (Disney, Minecraft, Marvel, etc.) and needed a frictionless way for parents to browse by character.",
+      "The store features licensed apparel across dozens of character franchises and needed an intuitive, touch-friendly way for parents to browse on mobile.",
     approach:
-      "I developed a fully custom carousel section in Liquid with circular brand-logo tiles, smooth left/right navigation, and a direct link to each brand's filtered collection page. Fully configurable from the Shopify admin with no code required.",
+      "I developed a custom Liquid carousel with circular brand badges, smooth touch navigation, and direct collection links, fully configurable via theme settings.",
     result:
-      "The brands section became one of the most-clicked elements on the homepage, significantly reducing the number of steps shoppers needed to reach their target collection.",
+      "Gave customers an interactive shortcut to their preferred collections directly from the homepage, reducing navigation steps on mobile devices.",
     stats: [
-      { label: "Brands Displayed", value: "12+" },
       { label: "Platform", value: "Shopify" },
-      { label: "Launch", value: "Q2 2026" },
+      { label: "Interaction", value: "Touch-Ready" },
+      { label: "Component", value: "Brand Slider" },
     ],
     showcases: [
       { video: { src: "/projects/Screen Recording 2026-08-03 163620.mp4" } },
     ],
   },
   {
-    index: "03",
-    slug: "disney-kidz-back-to-school",
-    title: "Disney Kidz — Back to School",
-    client: "Disney Kidz",
-    year: "2026",
-    category: "Shopify / E-Commerce",
-    role: "Shopify Theme Developer",
-    technologies: ["Shopify Liquid", "CSS Grid", "Custom Sections", "Brand Design"],
-    coverVideo: "/projects/Screen Recording 2026-08-03 152032.mp4",
-    excerpt:
-      "A fully branded section for a licensed children's store, designed to reinforce brand identity while surfacing key navigation and a newsletter opt-in.",
-    challenge:
-      "The store's footer needed to feel premium and on-brand with Disney's purple identity, while providing clear navigation for policies, social links, and a newsletter — all manageable from the Shopify admin.",
-    approach:
-      "I built a custom multi-column footer section in Liquid with a full-bleed brand background image, configurable link menus, social media icons, and an embedded newsletter form — all without third-party apps.",
-    result:
-      "The branded footer elevated the store's overall visual consistency and reduced customer service inquiries by surfacing policy pages directly in a clearly structured layout.",
-    stats: [
-      { label: "Platform", value: "Shopify" },
-      { label: "Admin Configurable", value: "100%" },
-      { label: "Launch", value: "Q2 2026" },
-    ],
-    showcases: [
-      { video: { src: "/projects/Screen Recording 2026-08-03 152032.mp4" } },
-    ],
-  },
-  {
     index: "04",
-    slug: "disney-kidz-brand-section",
-    title: "Disney Kidz — Brand Section",
+    slug: "disney-kidz-product-cards",
+    title: "Product Cards & Dynamic Discount Badges",
     client: "Disney Kidz",
+    projectContext: "Disney Kidz Storefront Customization",
     year: "2025",
-    category: "Shopify / E-Commerce",
+    category: "Shopify / Collection Optimization",
     role: "Shopify Theme Developer",
-    technologies: ["Shopify Liquid", "Custom CSS", "Metafields", "Sale Badges"],
+    technologies: ["Shopify Liquid", "Custom CSS", "Shopify Cart API", "Dawn Theme"],
     coverVideo: "/projects/Screen Recording 2026-08-03 163724.mp4",
+    mediaType: "video",
     excerpt:
-      "A clean, conversion-optimised product card component for a children's fashion store, featuring dynamic sale badges and a quick add-to-cart interaction.",
+      "A responsive product card component featuring dynamic discount badges and an inline quick add-to-cart flow for collection grids.",
     challenge:
-      "The default Shopify product card was generic and lacked the sale percentage badges and quick-add UX that modern shoppers expect, especially in a licensed character clothing context.",
+      "Standard product cards lacked dynamic discount indicators and required shoppers to open individual product pages to add items to their cart.",
     approach:
-      "I engineered a custom product card component with automatic sale-percentage calculation, a dynamic discount badge, and an inline add-to-cart button — all driven by Shopify's native metafields and cart API.",
+      "I customized the product card template to compute discount percentages dynamically, display promotional badges, and trigger inline cart additions via the Shopify Cart API.",
     result:
-      "The updated product cards measurably improved the store's product-list to add-to-cart rate, with customers taking action faster without needing to visit individual product pages.",
+      "Streamlined the shopping flow on collection pages by surfacing savings clearly and allowing shoppers to add items with a single tap.",
     stats: [
       { label: "Platform", value: "Shopify" },
-      { label: "Sale Badge", value: "Dynamic" },
-      { label: "Launch", value: "Q4 2025" },
+      { label: "Cart Action", value: "Quick Add-to-Cart" },
+      { label: "Component", value: "Product Card" },
     ],
     showcases: [
       { video: { src: "/projects/Screen Recording 2026-08-03 163724.mp4" } },
+    ],
+  },
+  {
+    index: "05",
+    slug: "disney-kidz-branded-footer",
+    title: "Modular Storefront Theme Footer",
+    client: "Disney Kidz",
+    projectContext: "Disney Kidz Storefront Customization",
+    year: "2026",
+    category: "Shopify / Custom Section",
+    role: "Shopify Theme Developer",
+    technologies: ["Shopify Liquid", "CSS Grid", "Custom Sections", "Responsive Design"],
+    coverVideo: "/projects/Screen Recording 2026-08-03 152032.mp4",
+    mediaType: "video",
+    excerpt:
+      "A custom multi-column footer section designed to reinforce brand identity while surfacing policy links, social media, and newsletter signups.",
+    challenge:
+      "The store required a cohesive footer that organized policy links, support info, and customer navigation cleanly without relying on third-party app scripts.",
+    approach:
+      "I created a responsive multi-column Liquid footer with modular menu blocks, brand visuals, social links, and an integrated newsletter form.",
+    result:
+      "Unified the bottom-of-page experience across mobile and desktop, making policy navigation clear and keeping the theme lightweight.",
+    stats: [
+      { label: "Platform", value: "Shopify" },
+      { label: "Layout", value: "Responsive Grid" },
+      { label: "Component", value: "Theme Footer" },
+    ],
+    showcases: [
+      { video: { src: "/projects/Screen Recording 2026-08-03 152032.mp4" } },
     ],
   },
 ];
@@ -141,31 +204,31 @@ export type Service = {
 export const services: Service[] = [
   {
     index: "01",
-    title: "Front-End Engineering",
+    title: "Storefront Customization",
     description:
-      "Production-grade builds using Next.js and React that treat performance and craft as the same discipline.",
-    capabilities: ["Next.js", "React", "TypeScript", "Performance Optimization"],
+      "Custom Liquid sections, template tailoring, and bespoke theme modifications that align precisely with your brand identity.",
+    capabilities: ["Shopify Liquid", "Theme Customization", "Custom Sections", "Admin Schema"],
   },
   {
     index: "02",
-    title: "Shopify Development",
+    title: "UI Implementation",
     description:
-      "Custom Shopify themes and headless commerce solutions that don't look or feel like typical templates.",
-    capabilities: ["Liquid Customization", "Headless Shopify", "Checkout Optimization", "App Integrations"],
+      "Translating design mockups and Figma layouts into clean, accessible, and responsive Shopify storefront interfaces.",
+    capabilities: ["Responsive UI", "Custom CSS", "Figma to Shopify", "Component Styling"],
   },
   {
     index: "03",
-    title: "UX / UI Design",
+    title: "Store Improvements",
     description:
-      "Interfaces engineered around behavior, not trends — every screen is a decision, not just a decoration.",
-    capabilities: ["Figma Prototyping", "Interaction Design", "Design Systems", "Conversion Focused"],
+      "Practical enhancements that streamline the shopping experience, from quick add-to-cart and cart drawers to promotional banners.",
+    capabilities: ["Cart Enhancements", "Dynamic Badges", "Metafield Integration", "App Setup"],
   },
   {
     index: "04",
-    title: "Motion Engineering",
+    title: "Responsive & Mobile QA",
     description:
-      "Intentional micro-interactions and smooth page transitions that elevate the perceived quality of the brand.",
-    capabilities: ["Framer Motion", "GSAP", "Scroll Animations", "Micro-interactions"],
+      "Rigorous testing and fixes across mobile phones, tablets, and desktops to ensure smooth touch interactions and zero layout glitches.",
+    capabilities: ["Mobile-First UX", "Cross-Browser Testing", "Layout Debugging", "Performance Optimization"],
   },
 ];
 
@@ -180,31 +243,31 @@ export const process: ProcessStep[] = [
     index: "00",
     title: "Discovery",
     description:
-      "I start by deeply understanding your brand, business goals, and the specific problems we need to solve.",
+      "Understanding your store's requirements, target audience, and the specific storefront improvements or customization needed.",
   },
   {
     index: "01",
-    title: "Architecture",
+    title: "Theme Architecture",
     description:
-      "Defining the right tech stack and data structures early ensures the final product is scalable and fast.",
+      "Reviewing your current theme structure and planning clean, maintainable Liquid sections and settings schemas.",
   },
   {
     index: "02",
     title: "Development",
     description:
-      "I write clean, modular code at production fidelity. No surprises at build time.",
+      "Writing modular Liquid, semantic HTML, and performant CSS/JS directly compatible with your Shopify theme.",
   },
   {
     index: "03",
-    title: "Refinement",
+    title: "Responsive Testing",
     description:
-      "Polishing animations, checking accessibility, and rigorously testing across all devices.",
+      "Testing across smartphone, tablet, laptop, and desktop screen sizes to guarantee flawless layouts and smooth interactions.",
   },
   {
     index: "04",
-    title: "Launch & Support",
+    title: "Theme Launch",
     description:
-      "I manage the deployment process and stand by to monitor performance during those critical first days.",
+      "Deploying changes safely through Shopify theme previews, verifying live behavior, and ensuring everything operates as expected.",
   },
 ];
 
@@ -215,26 +278,4 @@ export type Testimonial = {
   company: string;
 };
 
-export const testimonials: Testimonial[] = [
-  {
-    quote:
-      "He didn't just build our Shopify store. He understood the brand, the customer, and delivered something that genuinely stands out from every other kids clothing site.",
-    name: "Sarah Mitchell",
-    role: "Founder & CEO",
-    company: "Disney Kidz",
-  },
-  {
-    quote:
-      "The most detail-obsessed developer I've worked with. Every pixel, every interaction — handled with care. The result speaks for itself.",
-    name: "James Okafor",
-    role: "Head of Digital",
-    company: "Premium E-Commerce Client",
-  },
-  {
-    quote:
-      "Fast, communicative, and genuinely talented. He treated our project like it was his own. Rare to find that level of ownership in a freelancer.",
-    name: "Nour El-Masry",
-    role: "Product Manager",
-    company: "Upwork Client",
-  },
-];
+export const testimonials: Testimonial[] = [];
