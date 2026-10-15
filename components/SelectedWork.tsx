@@ -16,8 +16,9 @@ export default function SelectedWork({ onOpenProject }: SelectedWorkProps) {
   const mouseY = useMotionValue(0);
 
   return (
-    <section id="work" className="relative py-32 md:py-48 px-6 md:px-10">
-      <div className="flex items-end justify-between mb-14 md:mb-20 flex-wrap gap-6">
+    <section id="work" className="relative py-24 md:py-36">
+      <div className="max-w-7xl mx-auto w-full px-6 md:px-12 lg:px-20">
+        <div className="flex items-end justify-between mb-14 md:mb-20 flex-wrap gap-6">
         <div>
           <span className="eyebrow text-accent">Act II — Flagship Project</span>
           <RevealText
@@ -48,10 +49,11 @@ export default function SelectedWork({ onOpenProject }: SelectedWorkProps) {
         {projects.map((project) => (
           <button
             key={project.slug}
+            type="button"
             onMouseEnter={() => setHovered(project)}
             onMouseLeave={() => setHovered(null)}
             onClick={() => onOpenProject(project)}
-            className="group w-full text-left border-b border-line py-6 md:py-9 flex flex-col md:flex-row md:items-center justify-between gap-4 sm:gap-6 transition-colors duration-200 hover:bg-stage-raised/40 px-2 md:px-4 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent rounded-sm"
+            className="group w-full text-left border-b border-line py-6 md:py-9 flex flex-col md:flex-row md:items-center justify-between gap-4 sm:gap-6 transition-colors duration-200 hover:bg-stage-raised/40 px-2 md:px-4 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent rounded-sm cursor-pointer"
           >
             <div className="flex items-start md:items-center gap-4 sm:gap-6 flex-1 min-w-0">
               <span className="font-mono text-xs sm:text-sm text-smoke w-7 sm:w-9 shrink-0 pt-1 md:pt-0">
@@ -147,6 +149,7 @@ export default function SelectedWork({ onOpenProject }: SelectedWorkProps) {
           </motion.div>
         )}
       </AnimatePresence>
+      </div>
     </section>
   );
 }

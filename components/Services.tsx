@@ -9,7 +9,8 @@ export default function Services() {
   const [openIndex, setOpenIndex] = useState<number>(0);
 
   return (
-    <section id="services" className="relative py-32 md:py-48 px-6 md:px-10 border-t border-line">
+    <section id="services" className="relative py-24 md:py-36 border-t border-line">
+      <div className="max-w-7xl mx-auto w-full px-6 md:px-12 lg:px-20">
       <div className="mb-16 md:mb-24">
         <span className="eyebrow">Act III — Capabilities</span>
         <RevealText
@@ -73,6 +74,7 @@ export default function Services() {
             </div>
           );
         })}
+      </div>
       </div>
     </section>
   );

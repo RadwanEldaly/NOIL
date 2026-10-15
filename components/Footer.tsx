@@ -22,50 +22,52 @@ export default function Footer() {
         </div>
       </div>
 
-      <div className="grid md:grid-cols-4 gap-10 mb-16">
-        <div>
-          <span className="font-display italic text-xl">Radwan Eldaly</span>
-          <p className="font-body text-sm text-bone-dim mt-4 max-w-[28ch]">
-            Shopify Developer crafting custom storefronts, responsive UI, and practical store improvements.
-          </p>
-        </div>
+      <div className="max-w-7xl mx-auto w-full px-6 md:px-12 lg:px-20">
+        <div className="grid md:grid-cols-4 gap-10 mb-16">
+          <div>
+            <span className="font-display italic text-xl">Radwan Eldaly</span>
+            <p className="font-body text-sm text-bone-dim mt-4 max-w-[28ch]">
+              Shopify Developer crafting custom storefronts, responsive UI, and practical store improvements.
+            </p>
+          </div>
 
-        <div>
-          <p className="eyebrow mb-4">Location</p>
-          <ul className="flex flex-col gap-2 font-body text-sm text-bone-dim">
-            <li>Cairo, Egypt</li>
-            <li>Remote-first, worldwide clients</li>
-          </ul>
-        </div>
+          <div>
+            <p className="eyebrow mb-4">Location</p>
+            <ul className="flex flex-col gap-2 font-body text-sm text-bone-dim">
+              <li>Cairo, Egypt</li>
+              <li>Remote-first, worldwide clients</li>
+            </ul>
+          </div>
 
-        <div>
-          <p className="eyebrow mb-4">Contact</p>
-          <ul className="flex flex-col gap-2 font-body text-sm text-bone-dim">
-            <li>
-              <a href="mailto:radwaneldaly14@gmail.com" className="hover:text-accent transition-colors break-all sm:break-normal">
-                radwaneldaly14@gmail.com
-              </a>
-            </li>
-          </ul>
-        </div>
-
-        <div>
-          <p className="eyebrow mb-4">Elsewhere</p>
-          <ul className="flex flex-col gap-2 font-body text-sm text-bone-dim">
-            {socials.map(({ label, url }) => (
-              <li key={label}>
-                <a href={url} className="hover:text-accent transition-colors" target="_blank" rel="noopener noreferrer">
-                  {label}
+          <div>
+            <p className="eyebrow mb-4">Contact</p>
+            <ul className="flex flex-col gap-2 font-body text-sm text-bone-dim">
+              <li>
+                <a href="mailto:radwaneldaly14@gmail.com" className="hover:text-accent transition-colors break-all sm:break-normal">
+                  radwaneldaly14@gmail.com
                 </a>
               </li>
-            ))}
-          </ul>
-        </div>
-      </div>
+            </ul>
+          </div>
 
-      <div className="flex flex-col md:flex-row justify-between gap-4 eyebrow">
-        <span>© {new Date().getFullYear()}. All rights reserved.</span>
-        <span>Designed &amp; built with Next.js &amp; Tailwind.</span>
+          <div>
+            <p className="eyebrow mb-4">Elsewhere</p>
+            <ul className="flex flex-col gap-2 font-body text-sm text-bone-dim">
+              {socials.map(({ label, url }) => (
+                <li key={label}>
+                  <a href={url} className="hover:text-accent transition-colors" target="_blank" rel="noopener noreferrer">
+                    {label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+
+        <div className="flex flex-col md:flex-row justify-between gap-4 eyebrow border-t border-line/40 pt-8">
+          <span>© {new Date().getFullYear()}. All rights reserved.</span>
+          <span>Designed &amp; built with Next.js &amp; Tailwind.</span>
+        </div>
       </div>
     </footer>
   );

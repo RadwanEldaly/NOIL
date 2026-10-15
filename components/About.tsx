@@ -12,8 +12,9 @@ const focusAreas = [
 
 export default function About() {
   return (
-    <section id="about" className="relative py-32 md:py-48 px-6 md:px-10 border-t border-line">
-      <div className="grid md:grid-cols-12 gap-y-12 md:gap-y-16 gap-x-6">
+    <section id="about" className="relative py-24 md:py-36 border-t border-line">
+      <div className="max-w-7xl mx-auto w-full px-6 md:px-12 lg:px-20">
+        <div className="grid md:grid-cols-12 gap-y-12 md:gap-y-16 gap-x-6">
         <div className="md:col-span-4 flex flex-col justify-between">
           <div>
             <span className="eyebrow">Act IV — About Me</span>
@@ -64,6 +65,7 @@ export default function About() {
             ))}
           </div>
         </div>
+      </div>
       </div>
     </section>
   );

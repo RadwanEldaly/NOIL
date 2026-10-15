@@ -27,10 +27,12 @@ export default function Nav() {
     setOpen(false);
     const el = document.getElementById(id);
     if (!el) return;
-    const prefersReducedMotion =
-      typeof window !== "undefined" &&
-      window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    el.scrollIntoView({ behavior: prefersReducedMotion ? "auto" : "smooth" });
+    setTimeout(() => {
+      const prefersReducedMotion =
+        typeof window !== "undefined" &&
+        window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      el.scrollIntoView({ behavior: prefersReducedMotion ? "auto" : "smooth" });
+    }, 150);
   };
 
   // Close menu on Escape key for accessibility
@@ -46,54 +48,55 @@ export default function Nav() {
 
   return (
     <>
-      <header className="fixed top-0 inset-x-0 z-50 flex items-center justify-between px-6 md:px-10 py-6 mix-blend-difference">
-        <button
-          onClick={() => scrollTo("hero")}
-          className="font-display italic text-lg md:text-xl tracking-tight text-bone hover:text-accent transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-accent rounded-sm"
-        >
-          Radwan Eldaly
-        </button>
+      <header className="fixed top-0 inset-x-0 z-50 py-5 md:py-6 pointer-events-none">
+        <div className="max-w-7xl mx-auto w-full px-6 md:px-12 lg:px-20 flex items-center justify-between pointer-events-auto mix-blend-difference">
+          <button
+            onClick={() => scrollTo("hero")}
+            className="font-display italic text-lg md:text-xl tracking-tight text-bone hover:text-accent transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-accent rounded-sm"
+          >
+            Radwan Eldaly
+          </button>
 
-        {/* Desktop direct navigation links */}
-        <nav aria-label="Main navigation" className="hidden md:flex items-center gap-8">
-          <button
-            onClick={() => scrollTo("work")}
-            className="eyebrow hover:text-accent transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-accent rounded-sm"
-          >
-            Work
-          </button>
-          <button
-            onClick={() => scrollTo("services")}
-            className="eyebrow hover:text-accent transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-accent rounded-sm"
-          >
-            Services
-          </button>
-          <button
-            onClick={() => scrollTo("about")}
-            className="eyebrow hover:text-accent transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-accent rounded-sm"
-          >
-            About
-          </button>
-          <button
-            onClick={() => scrollTo("contact")}
-            className="eyebrow hover:text-accent transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-accent rounded-sm"
-          >
-            Contact
-          </button>
-        </nav>
+          {/* Desktop direct navigation links */}
+          <nav aria-label="Main navigation" className="hidden md:flex items-center gap-8">
+            <button
+              onClick={() => scrollTo("work")}
+              className="eyebrow hover:text-accent transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-accent rounded-sm"
+            >
+              Work
+            </button>
+            <button
+              onClick={() => scrollTo("services")}
+              className="eyebrow hover:text-accent transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-accent rounded-sm"
+            >
+              Services
+            </button>
+            <button
+              onClick={() => scrollTo("about")}
+              className="eyebrow hover:text-accent transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-accent rounded-sm"
+            >
+              About
+            </button>
+            <button
+              onClick={() => scrollTo("contact")}
+              className="eyebrow hover:text-accent transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-accent rounded-sm"
+            >
+              Contact
+            </button>
+          </nav>
 
-        <button
-          onClick={() => setOpen(true)}
-          className="eyebrow flex items-center gap-3 text-bone focus:outline-none focus-visible:ring-2 focus-visible:ring-accent p-2 -mr-2 rounded-sm"
-          aria-label="Open menu"
-          aria-expanded={open}
-        >
-          <span className="hidden sm:inline">Index</span>
-          <span className="flex flex-col gap-1.5 w-6">
-            <span className="h-px w-full bg-bone" />
-            <span className="h-px w-full bg-bone" />
-          </span>
-        </button>
+          <button
+            onClick={() => setOpen(true)}
+            className="group flex items-center gap-3 text-bone focus:outline-none focus-visible:ring-2 focus-visible:ring-accent p-2 -mr-2 rounded-sm"
+            aria-label="Open menu"
+            aria-expanded={open}
+          >
+            <span className="flex flex-col gap-1.5 w-6 group-hover:scale-105 transition-transform duration-200">
+              <span className="h-px w-full bg-bone group-hover:bg-accent transition-colors duration-200" />
+              <span className="h-px w-full bg-bone group-hover:bg-accent transition-colors duration-200" />
+            </span>
+          </button>
+        </div>
       </header>
 
       {/* Desktop side rail — quiet, always-present act index */}
@@ -116,23 +119,30 @@ export default function Nav() {
         ))}
       </nav>
 
-      <AnimatePresence>
+      <AnimatePresence mode="wait">
         {open && (
           <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.2, ease: "easeOut" }}
-            className="fixed inset-0 z-[70] bg-stage flex flex-col justify-between px-6 md:px-16 py-8 md:py-10 overflow-y-auto"
+            key="fullscreen-nav-menu"
+            initial={{ opacity: 0, y: -12, filter: "blur(6px)" }}
+            animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+            exit={{
+              opacity: 0,
+              y: -14,
+              filter: "blur(6px)",
+              transition: { duration: 0.28, ease: [0.32, 0.72, 0, 1] },
+            }}
+            transition={{ duration: 0.35, ease: [0.32, 0.72, 0, 1] }}
+            className="fixed inset-0 z-[70] bg-stage/95 backdrop-blur-xl flex flex-col justify-between px-6 md:px-16 py-8 md:py-10 overflow-y-auto"
           >
             <div className="flex items-center justify-between mb-6">
               <span className="font-display italic text-xl">Radwan Eldaly</span>
               <button
                 onClick={() => setOpen(false)}
-                className="eyebrow focus:outline-none focus-visible:ring-2 focus-visible:ring-accent p-2 -mr-2 rounded-sm"
+                className="group flex items-center gap-2 eyebrow text-bone hover:text-accent focus:outline-none focus-visible:ring-2 focus-visible:ring-accent p-2 -mr-2 rounded-sm transition-colors duration-200"
                 aria-label="Close menu"
               >
-                Close ✕
+                <span>Close</span>
+                <span className="text-base leading-none group-hover:rotate-90 transition-transform duration-300">✕</span>
               </button>
             </div>
 

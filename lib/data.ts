@@ -28,10 +28,10 @@ export const flagshipProject = {
   name: "Disney Kidz Storefront",
   client: "Disney Kidz",
   platform: "Shopify (Dawn Theme)",
-  role: "Shopify Theme Developer",
+  role: "Shopify Storefront Developer",
   period: "2025 – 2026",
   description:
-    "A comprehensive Shopify theme customization for a licensed children's apparel store. Work centered on mobile-first navigation architecture, custom campaign sections, interactive collection filters, and storefront usability improvements.",
+    "A comprehensive storefront UI overhaul for a licensed children's apparel store. Work centered on fixing broken theme CSS, engineering responsive custom sections, and eliminating mobile layout friction across the store.",
 };
 
 export const projects: Project[] = [
@@ -44,21 +44,21 @@ export const projects: Project[] = [
     year: "2026",
     category: "Shopify / Navigation & Mobile UX",
     role: "Shopify Theme Developer",
-    technologies: ["Shopify Liquid", "Mobile Drawer", "UI Architecture", "Dawn Theme"],
+    technologies: ["Custom CSS", "Shopify Theme Styling", "Mobile Touch UX", "Dawn Theme"],
     coverVideo: "/projects/disney-kidz-menu-drawer.png",
     coverImage: "/projects/disney-kidz-menu-drawer.png",
     mediaType: "image",
     excerpt:
-      "A custom mobile slide-out navigation drawer designed to replace dense multi-level dropdowns with visual product category cards, promotional tags, and direct loyalty club integration.",
+      "A custom mobile slide-out navigation styling overhaul replacing unstyled, text-heavy menus with visual product category cards, promotional tags, and direct loyalty club integration.",
     challenge:
-      "Standard mobile navigation menus for extensive clothing catalogs rely on plain text lists. On mobile viewports, this created friction for parents browsing for specific garments and hid important store services like sizing assistance and VIP perks.",
+      "The store's navigation styling was visually broken on mobile viewports, displaying cluttered, plain text links that crowded small screens, lacked category hierarchy, and made finding specific apparel difficult for parents.",
     approach:
-      "I developed a custom Liquid drawer section with card-style touch targets featuring category thumbnails, clear typography, and visual status badges ('FAST SHIP', 'POPULAR'). The drawer also integrates an account onboarding card ('Disney Kidz Club') and direct access to sizing support.",
+      "Working with the theme's structural foundation, I re-engineered the mobile menu CSS to create clean, card-style touch targets with category thumbnails, clear typography, and status badges ('FAST SHIP', 'POPULAR'). I also styled an integrated loyalty card ('Disney Kidz Club') and direct customer care shortcuts.",
     result:
       "Delivered an intuitive, thumb-friendly navigation experience where key clothing departments and customer support are instantly recognizable without navigating through layers of text menus.",
     stats: [
       { label: "Platform", value: "Shopify Dawn" },
-      { label: "Architecture", value: "Visual Category Cards" },
+      { label: "Core Fix", value: "Custom CSS & Layout" },
       { label: "Touch UX", value: "Mobile-First Drawer" },
     ],
     showcases: [
@@ -78,6 +78,94 @@ export const projects: Project[] = [
   },
   {
     index: "02",
+    slug: "disney-kidz-cart-drawer",
+    title: "Slide-Out Ajax Cart Drawer & Quick Checkout",
+    client: "Disney Kidz",
+    projectContext: "Disney Kidz Storefront Customization",
+    year: "2026",
+    category: "Shopify / Ajax Cart & Checkout UX",
+    role: "Shopify Theme Developer",
+    technologies: ["Custom CSS", "Ajax Cart Styling", "Mobile UX", "Shopify Dawn"],
+    coverVideo: "/projects/disney-kidz-cart-drawer.png",
+    coverImage: "/projects/disney-kidz-cart-drawer.png",
+    mediaType: "image",
+    excerpt:
+      "A slide-out Ajax cart styling overhaul featuring clean quantity controls, real-time total recalculation, variant breakdown, and direct checkout acceleration.",
+    challenge:
+      "The default cart drawer suffered from awkward layout spacing, misaligned quantity controls, and clipped currency text on mobile screens, creating purchase friction.",
+    approach:
+      "I resolved the layout and CSS bugs in the Ajax cart drawer, styling responsive item line layouts, aligned quantity pills (+ / -), dynamic currency totals, and an uncluttered direct checkout button.",
+    result:
+      "Delivered a friction-free mobile cart experience that keeps users engaged on the collection/product page while giving immediate feedback on their cart contents and estimated total.",
+    stats: [
+      { label: "Component", value: "Ajax Cart Drawer" },
+      { label: "Core Fix", value: "Responsive Cart CSS" },
+      { label: "Checkout Path", value: "One-Tap Direct" },
+    ],
+    showcases: [
+      {
+        image: {
+          src: "/projects/disney-kidz-cart-drawer.png",
+          caption: "Ajax slide-out cart drawer with live subtotal calculation, quantity pills, and direct checkout CTA",
+        },
+      },
+    ],
+  },
+  {
+    index: "03",
+    slug: "disney-kidz-curated-categories",
+    title: "Curated Collections: 'Shop by Category' Section",
+    client: "Disney Kidz",
+    projectContext: "Disney Kidz Storefront Customization",
+    year: "2026",
+    category: "Shopify / Custom Section & CSS",
+    role: "Shopify Theme Developer",
+    technologies: ["Custom CSS", "CSS Grid & Flexbox", "Responsive Styling", "Dawn Theme"],
+    coverVideo: "/projects/disney-kidz-categories-desktop.png",
+    coverImage: "/projects/disney-kidz-categories-desktop.png",
+    mediaType: "image",
+    excerpt:
+      "A custom-styled 'Shop by Category' section with demographic cards (Boys, Girls, Baby), age indicators, and quick-filter subcategory pills designed for rapid collection discovery.",
+    challenge:
+      "The store lacked an engaging visual category directory, resulting in high bounce rates as shoppers had to guess where to find Boys, Girls, and Baby apparel lines.",
+    approach:
+      "I engineered the custom CSS grid and flexbox layout for the curated collections section, styling demographic cards with demographic badges ('Ages 2-14') and quick-tap pill buttons that scale fluidly from a 3-column desktop grid to single-column mobile cards.",
+    result:
+      "Streamlined product discovery with a visual entry point that highlights seasonal imagery and provides direct shortcuts into high-demand subcategories.",
+    stats: [
+      { label: "Layout", value: "3-Col Grid / Mobile Stack" },
+      { label: "Core Fix", value: "CSS Grid & Touch Pills" },
+      { label: "Platform", value: "Shopify Dawn" },
+    ],
+    showcases: [
+      {
+        image: {
+          src: "/projects/disney-kidz-categories-desktop.png",
+          caption: "Desktop 3-column layout showcasing Boys, Girls, and Baby cards with demographic labels and interactive category pills",
+        },
+      },
+      {
+        image: {
+          src: "/projects/disney-kidz-categories-mobile.png",
+          caption: "Mobile-responsive presentation with full-width visual cards and touch-optimized subcategory buttons",
+        },
+      },
+      {
+        image: {
+          src: "/projects/disney-kidz-categories-girls.png",
+          caption: "Girls category card detail showing frosted glass pills for Dresses, Shoes, and T-Shirts",
+        },
+      },
+      {
+        image: {
+          src: "/projects/disney-kidz-categories-baby.png",
+          caption: "Baby category card detail showing infant sizing tag (0-24M) and direct product links",
+        },
+      },
+    ],
+  },
+  {
+    index: "04",
     slug: "disney-kidz-campaign-hero",
     title: "Campaign Hero & Seasonal Banner Section",
     client: "Disney Kidz",
@@ -106,7 +194,7 @@ export const projects: Project[] = [
     ],
   },
   {
-    index: "03",
+    index: "05",
     slug: "disney-kidz-brand-carousel",
     title: "Character & Brand Discovery Carousel",
     client: "Disney Kidz",
@@ -135,7 +223,7 @@ export const projects: Project[] = [
     ],
   },
   {
-    index: "04",
+    index: "06",
     slug: "disney-kidz-product-cards",
     title: "Product Cards & Dynamic Discount Badges",
     client: "Disney Kidz",
@@ -164,7 +252,7 @@ export const projects: Project[] = [
     ],
   },
   {
-    index: "05",
+    index: "07",
     slug: "disney-kidz-branded-footer",
     title: "Modular Storefront Theme Footer",
     client: "Disney Kidz",

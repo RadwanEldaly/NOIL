@@ -36,9 +36,10 @@ export default function CaseStudyOverlay({ project, onClose }: CaseStudyOverlayP
   }, [onClose]);
 
   return (
-    <AnimatePresence>
+    <AnimatePresence mode="wait">
       {project && (
         <motion.div
+          key={project.slug}
           role="dialog"
           aria-modal="true"
           aria-label={`${project.title} case study`}
@@ -194,9 +195,9 @@ export default function CaseStudyOverlay({ project, onClose }: CaseStudyOverlayP
             <div className="flex justify-between items-center gap-4 pt-10 border-t border-line flex-wrap sm:flex-nowrap">
               <button
                 onClick={onClose}
-                  className="eyebrow flex items-center gap-2 p-2 -ml-2 rounded-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+                  className="eyebrow flex items-center gap-2 p-2 -ml-2 rounded-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-accent hover:text-accent transition-colors"
               >
-                ← Back to Index
+                ← Back to Projects
               </button>
               <a
                 href="#contact"
