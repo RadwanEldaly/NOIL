@@ -303,36 +303,46 @@ export type Service = {
   title: string;
   description: string;
   capabilities: string[];
+  icon: "shopify" | "code" | "responsive" | "growth";
+  tone: string; // Tailwind bg class for the icon tile
 };
 
 export const services: Service[] = [
   {
     index: "01",
-    title: "Storefront Customization",
+    title: "Shopify Theme Customization",
     description:
-      "Custom Liquid sections, template tailoring, and bespoke theme modifications that align precisely with your brand identity.",
-    capabilities: ["Shopify Liquid", "Theme Customization", "Custom Sections", "Admin Schema"],
+      "I build custom Liquid sections and modify existing themes so your store looks and behaves exactly the way your brand needs, with settings you can edit from the theme editor without touching code.",
+    capabilities: ["Liquid", "Custom Sections", "Theme Schema", "Online Store 2.0"],
+    icon: "shopify",
+    tone: "bg-accent",
   },
   {
     index: "02",
-    title: "UI Implementation",
+    title: "Front-End Development",
     description:
-      "Translating design mockups and Figma layouts into clean, accessible, and responsive Shopify storefront interfaces.",
-    capabilities: ["Responsive UI", "Custom CSS", "Figma to Shopify", "Component Styling"],
+      "Clean, maintainable interfaces built with modern JavaScript. I use React and Next.js for full web apps and Tailwind CSS for fast, consistent styling.",
+    capabilities: ["HTML & CSS", "JavaScript", "React", "Next.js", "Tailwind CSS"],
+    icon: "code",
+    tone: "bg-[#2196F3]",
   },
   {
     index: "03",
-    title: "Store Improvements",
+    title: "Responsive UI & Mobile QA",
     description:
-      "Practical enhancements that streamline the shopping experience, from quick add-to-cart and cart drawers to promotional banners.",
-    capabilities: ["Cart Enhancements", "Dynamic Badges", "Metafield Integration", "App Setup"],
+      "I turn design mockups into pixel-careful layouts and test them on real phone, tablet, and desktop sizes, so touch interactions feel smooth and nothing breaks on small screens.",
+    capabilities: ["Mobile-First", "Figma to Code", "Cross-Browser Testing", "Layout Debugging"],
+    icon: "responsive",
+    tone: "bg-[#FFB400]",
   },
   {
     index: "04",
-    title: "Responsive & Mobile QA",
+    title: "Store Experience Upgrades",
     description:
-      "Rigorous testing and fixes across mobile phones, tablets, and desktops to ensure smooth touch interactions and zero layout glitches.",
-    capabilities: ["Mobile-First UX", "Cross-Browser Testing", "Layout Debugging", "Performance Optimization"],
+      "Practical improvements that make shopping easier and push more visitors toward checkout: slide-out carts, quick add-to-cart, dynamic discount badges, and clearer navigation.",
+    capabilities: ["Cart Drawer", "Quick Add", "Discount Badges", "Navigation UX"],
+    icon: "growth",
+    tone: "bg-[#FF3B30]",
   },
 ];
 

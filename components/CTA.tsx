@@ -11,11 +11,11 @@ export default function CTA() {
     >
       <div className="max-w-7xl mx-auto w-full px-6 md:px-12 lg:px-20 flex flex-col items-start">
         <Reveal>
-          <span className="eyebrow block mb-8">05 — Start Something</span>
+          <span className="eyebrow block mb-8">05 — Contact</span>
           <RevealText
             text="Let's Build Your Next Chapter"
             as="h2"
-            className="font-display font-medium tracking-tightest text-clamp-h1 leading-[0.95] max-w-4xl"
+            className="font-display font-semibold text-clamp-h1 max-w-4xl"
           />
         </Reveal>
 

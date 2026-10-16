@@ -26,7 +26,7 @@ module.exports = {
       },
       fontSize: {
         "clamp-hero": "clamp(3.5rem, 12vw, 11rem)",
-        "clamp-h1": "clamp(2.5rem, 7vw, 6rem)",
+        "clamp-h1": ["clamp(3rem, 9vw, 8rem)", { lineHeight: "0.92", letterSpacing: "-0.045em", fontWeight: "600" }],
         "clamp-h2": "clamp(2rem, 5vw, 4rem)",
         "clamp-body": "clamp(1rem, 1.2vw, 1.15rem)",
       },

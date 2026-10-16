@@ -18,11 +18,11 @@ export default function About() {
           {/* LEFT (col-span-6 on desktop) */}
           <div className="lg:col-span-6 flex flex-col">
             <Reveal>
-              <span className="eyebrow block mb-4">03</span>
+              <span className="eyebrow block mb-4">03 — About</span>
               <RevealText
                 text="About Me"
                 as="h2"
-                className="font-display font-medium tracking-tightest text-[clamp(3.5rem,9vw,7.5rem)] leading-[0.9]"
+                className="font-display font-semibold tracking-tightest text-[clamp(3.5rem,9vw,7.5rem)] leading-[0.9]"
               />
             </Reveal>
 

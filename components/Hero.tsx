@@ -36,7 +36,7 @@ export default function Hero() {
         <div className="my-auto py-8 md:py-10 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center">
           {/* Left Column: Typography & CTAs */}
           <div className="lg:col-span-7 max-w-xl">
-            <h1 className="font-display font-medium leading-[0.95] text-[clamp(2.5rem,6.8vw,6.5rem)] tracking-tightest text-bone">
+            <h1 className="font-display font-semibold leading-[0.95] text-[clamp(2.5rem,6.8vw,6.5rem)] tracking-tightest text-bone">
               <span className="block overflow-hidden">
                 <motion.span
                   className="block"

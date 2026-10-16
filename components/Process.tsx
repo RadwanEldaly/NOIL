@@ -7,11 +7,11 @@ export default function Process() {
     <section id="process" className="relative py-24 md:py-36 border-t border-line scroll-mt-20">
       <div className="max-w-7xl mx-auto w-full px-6 md:px-12 lg:px-20">
         <div className="mb-16 md:mb-24">
-          <span className="eyebrow block mb-3">04</span>
+          <span className="eyebrow block mb-3">04 — Process</span>
           <RevealText
             text="The Process"
             as="h2"
-            className="font-display font-medium tracking-tightest text-clamp-h1 leading-[0.95]"
+            className="font-display font-semibold text-clamp-h1"
           />
         </div>
 

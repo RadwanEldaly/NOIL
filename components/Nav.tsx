@@ -6,7 +6,7 @@ import { testimonials } from "@/lib/data";
 
 const sections = [
   { id: "work", label: "Selected Work", act: "01" },
-  { id: "services", label: "Services", act: "02" },
+  { id: "services", label: "Skills", act: "02" },
   { id: "about", label: "About", act: "03" },
   { id: "process", label: "Process", act: "04" },
   ...(testimonials.length > 0 ? [{ id: "testimonials", label: "Testimonials", act: "05" }] : []),
@@ -15,8 +15,24 @@ const sections = [
 
 export default function Nav() {
   const [open, setOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const targetIdRef = useRef<string | null>(null);
   const shouldReduceMotion = useReducedMotion();
+
+  useEffect(() => {
+    let ticking = false;
+    const onScroll = () => {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(() => {
+        setScrolled(window.scrollY > 24);
+        ticking = false;
+      });
+    };
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   // Lock body scroll while open
   useEffect(() => {
@@ -116,11 +132,23 @@ export default function Nav() {
 
   return (
     <>
-      <header className="fixed top-0 inset-x-0 z-50 py-5 md:py-6 pointer-events-none">
-        <div className="max-w-7xl mx-auto w-full px-6 md:px-12 lg:px-20 flex items-center justify-between pointer-events-auto">
+      <header
+        className={`fixed top-0 inset-x-0 z-50 pointer-events-none transition-[padding] duration-500 ease-cinematic ${
+          scrolled ? "pt-3" : "pt-5 md:pt-6"
+        }`}
+      >
+        <div
+          className={`mx-auto pointer-events-auto flex items-center justify-between transition-all duration-500 ease-cinematic ${
+            scrolled
+              ? "max-w-5xl w-[calc(100%-1.5rem)] md:w-[calc(100%-4rem)] px-4 md:px-6 py-2 rounded-full border border-line/70 bg-stage/90 supports-[backdrop-filter]:bg-stage/60 backdrop-blur-xl backdrop-saturate-150 shadow-[0_8px_30px_rgba(0,0,0,0.06)]"
+              : "max-w-7xl w-full px-6 md:px-12 lg:px-20 py-2 border border-transparent"
+          }`}
+        >
           <button
             onClick={() => scrollTo("hero")}
-            className="font-display font-medium text-lg md:text-xl tracking-tight text-bone hover:text-accent transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-accent rounded-sm"
+            className={`font-display font-medium tracking-tight text-bone hover:text-accent transition-all duration-500 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent rounded-sm ${
+              scrolled ? "text-base md:text-lg" : "text-lg md:text-xl"
+            }`}
           >
             Radwan Eldaly
           </button>
@@ -137,7 +165,7 @@ export default function Nav() {
               onClick={() => scrollTo("services")}
               className="eyebrow text-bone hover:text-accent transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-accent rounded-sm"
             >
-              Services
+              Skills
             </button>
             <button
               onClick={() => scrollTo("about")}
@@ -180,7 +208,7 @@ export default function Nav() {
             aria-label={`Go to ${s.label}`}
           >
             <span className="eyebrow opacity-0 group-hover:opacity-100 transition-opacity duration-200 whitespace-nowrap">
-              {s.label}
+              {s.act} — {s.label}
             </span>
             <span className="w-1.5 h-1.5 rounded-full bg-smoke group-hover:bg-accent transition-colors duration-200" />
           </button>

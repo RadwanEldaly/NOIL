@@ -1,59 +1,14 @@
 "use client";
 
-import { useEffect, useRef } from "react";
 import Image from "next/image";
 import RevealText from "./RevealText";
 import Reveal from "./Reveal";
+import LazyVideo from "./LazyVideo";
 import { projects, flagshipProject, type Project } from "@/lib/data";
 
 type SelectedWorkProps = {
   onOpenProject: (project: Project) => void;
 };
-
-function ProjectVideo({
-  src,
-  poster,
-  title,
-}: {
-  src: string;
-  poster?: string;
-  title: string;
-}) {
-  const videoRef = useRef<HTMLVideoElement>(null);
-
-  useEffect(() => {
-    const video = videoRef.current;
-    if (!video) return;
-
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry && entry.isIntersecting) {
-          video.play().catch(() => {});
-        } else {
-          video.pause();
-        }
-      },
-      { threshold: 0.4 }
-    );
-
-    observer.observe(video);
-    return () => observer.disconnect();
-  }, []);
-
-  return (
-    <video
-      ref={videoRef}
-      src={src}
-      poster={poster}
-      muted
-      loop
-      playsInline
-      preload="none"
-      aria-label={title}
-      className="w-full h-full object-cover group-hover:scale-[1.03] transition-transform duration-700 ease-cinematic"
-    />
-  );
-}
 
 export default function SelectedWork({ onOpenProject }: SelectedWorkProps) {
   return (
@@ -62,11 +17,11 @@ export default function SelectedWork({ onOpenProject }: SelectedWorkProps) {
         {/* Header Row */}
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-14 md:mb-20 gap-6">
           <div>
-            <span className="eyebrow block mb-3">01</span>
+            <span className="eyebrow block mb-3">01 — Selected Work</span>
             <RevealText
               text="Selected Works"
               as="h2"
-              className="font-display font-medium tracking-tightest text-clamp-h1 leading-[0.95]"
+              className="font-display font-semibold text-clamp-h1"
             />
             <p className="font-body text-bone-dim text-sm sm:text-base leading-relaxed mt-4 max-w-md">
               {flagshipProject.description}
@@ -100,10 +55,10 @@ export default function SelectedWork({ onOpenProject }: SelectedWorkProps) {
                     }`}
                   >
                     {project.mediaType === "video" ? (
-                      <ProjectVideo
+                      <LazyVideo
                         src={project.coverVideo}
                         poster={project.poster}
-                        title={project.title}
+                        className="w-full h-full object-cover group-hover:scale-[1.03] transition-transform duration-700 ease-cinematic"
                       />
                     ) : (
                       <Image
