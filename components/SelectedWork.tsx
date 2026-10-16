@@ -106,7 +106,7 @@ export default function SelectedWork({ onOpenProject }: SelectedWorkProps) {
         {hovered && (
           <motion.div
             key={hovered.slug}
-            className="hidden lg:block fixed top-0 left-0 z-30 w-[340px] h-[230px] pointer-events-none overflow-hidden rounded-lg shadow-2xl border border-line bg-stage-raised"
+            className="hidden lg:block fixed top-0 left-0 z-30 w-[340px] h-[230px] pointer-events-none overflow-hidden rounded-lg shadow-[0_0_60px_-15px_rgba(251,191,36,0.25)] border border-amber-500/30 bg-stage-raised"
             style={{
               x: mouseX,
               y: mouseY,
@@ -117,6 +117,8 @@ export default function SelectedWork({ onOpenProject }: SelectedWorkProps) {
             transition={{ duration: 0.2, ease: "easeOut" }}
           >
             <div className="w-full h-full relative overflow-hidden">
+              {/* Sunlight wash over preview */}
+              <div className="absolute top-0 inset-x-0 h-28 bg-gradient-to-b from-amber-300/15 via-amber-500/3 to-transparent pointer-events-none z-10" />
               {hovered.mediaType === "image" ? (
                 <Image
                   src={hovered.coverImage || hovered.coverVideo}

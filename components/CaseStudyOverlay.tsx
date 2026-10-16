@@ -49,6 +49,21 @@ export default function CaseStudyOverlay({ project, onClose }: CaseStudyOverlayP
           exit={{ opacity: 0 }}
           transition={{ duration: 0.25, ease: "easeOut" }}
         >
+          {/* Ambient Cinematic Sunlight Flare from Top Right */}
+          <div
+            className="pointer-events-none fixed -top-32 right-1/4 w-[750px] max-w-full h-[450px] rounded-full bg-[radial-gradient(ellipse_at_top,_rgba(254,240,138,0.22)_0%,_rgba(251,191,36,0.12)_35%,_rgba(245,158,11,0.04)_65%,_transparent_80%)] blur-3xl z-20"
+            aria-hidden="true"
+          />
+          <div
+            className="pointer-events-none fixed -top-16 right-[35%] w-[380px] h-[220px] rounded-full bg-gradient-to-b from-amber-100/35 via-amber-300/15 to-transparent blur-2xl z-20"
+            aria-hidden="true"
+          />
+          {/* Diagonal Sunbeam Streaks */}
+          <div
+            className="pointer-events-none fixed -top-24 right-[25%] w-[220px] h-[800px] -rotate-45 bg-gradient-to-b from-amber-200/15 via-amber-400/5 to-transparent blur-3xl z-20"
+            aria-hidden="true"
+          />
+
           <div className="sticky top-0 z-30 flex items-center justify-between gap-4 px-6 md:px-10 py-4 sm:py-5 bg-[#121417] border-b border-line shadow-lg">
             <span className="font-display italic text-sm sm:text-base md:text-lg truncate text-bone">{project.title}</span>
             <button
@@ -60,12 +75,17 @@ export default function CaseStudyOverlay({ project, onClose }: CaseStudyOverlayP
             </button>
           </div>
 
-          <article className="px-6 md:px-10 pt-10 sm:pt-14 md:pt-20 pb-32 max-w-6xl mx-auto">
+          <article className="px-6 md:px-10 pt-10 sm:pt-14 md:pt-20 pb-32 max-w-6xl mx-auto relative z-10">
             <header className="mb-14 md:mb-20">
               <span className="eyebrow text-smoke">
                 {project.client} — {project.year}
               </span>
-              <h2 className="font-display italic text-clamp-h1 leading-[0.9] mt-4 mb-6 sm:mb-8">
+              <h2
+                className="font-display italic text-clamp-h1 leading-[0.9] mt-4 mb-6 sm:mb-8"
+                style={{
+                  textShadow: "0 0 45px rgba(251, 191, 36, 0.2)",
+                }}
+              >
                 {project.title}
               </h2>
               <p className="font-body text-clamp-body text-bone-dim max-w-2xl leading-relaxed">
@@ -101,7 +121,9 @@ export default function CaseStudyOverlay({ project, onClose }: CaseStudyOverlayP
             </header>
 
             {project.mediaType === "image" ? (
-              <div className="relative w-full aspect-[4/3] sm:aspect-[16/9] bg-stage-raised mb-16 md:mb-24 overflow-hidden rounded-xl shadow-2xl border border-line flex items-center justify-center p-4 sm:p-8">
+              <div className="relative w-full aspect-[4/3] sm:aspect-[16/9] bg-stage-raised mb-16 md:mb-24 overflow-hidden rounded-xl shadow-[0_0_70px_-15px_rgba(251,191,36,0.22)] border border-line/80 flex items-center justify-center p-4 sm:p-8 group">
+                {/* Sunlight wash over media */}
+                <div className="absolute top-0 inset-x-0 h-44 bg-gradient-to-b from-amber-300/12 via-amber-500/3 to-transparent pointer-events-none z-10" />
                 <div className="relative h-full w-full max-w-xs sm:max-w-sm aspect-[9/16] rounded-lg overflow-hidden shadow-2xl border border-line/60">
                   <Image
                     src={project.coverImage || project.coverVideo}
@@ -114,7 +136,9 @@ export default function CaseStudyOverlay({ project, onClose }: CaseStudyOverlayP
                 </div>
               </div>
             ) : (
-              <div className="relative w-full aspect-[16/9] bg-stage-raised mb-16 md:mb-24 overflow-hidden rounded-xl shadow-2xl border border-line group">
+              <div className="relative w-full aspect-[16/9] bg-stage-raised mb-16 md:mb-24 overflow-hidden rounded-xl shadow-[0_0_70px_-15px_rgba(251,191,36,0.22)] border border-line/80 group">
+                {/* Sunlight wash over media */}
+                <div className="absolute top-0 inset-x-0 h-44 bg-gradient-to-b from-amber-300/12 via-amber-500/3 to-transparent pointer-events-none z-10" />
                 <video
                   src={project.coverVideo}
                   autoPlay
@@ -159,7 +183,9 @@ export default function CaseStudyOverlay({ project, onClose }: CaseStudyOverlayP
                 if (showcase.image) {
                   return (
                     <div key={idx} className="flex flex-col gap-3">
-                      <div className="w-full min-h-[380px] sm:min-h-[500px] bg-stage-raised/80 flex items-center justify-center p-6 md:p-12 rounded-xl shadow-2xl border border-line">
+                      <div className="w-full min-h-[380px] sm:min-h-[500px] bg-stage-raised/80 flex items-center justify-center p-6 md:p-12 rounded-xl shadow-[0_0_60px_-15px_rgba(251,191,36,0.18)] border border-line/80 relative overflow-hidden group">
+                        {/* Sunlight wash over showcase */}
+                        <div className="absolute top-0 inset-x-0 h-36 bg-gradient-to-b from-amber-300/10 via-amber-500/2 to-transparent pointer-events-none z-10" />
                         <div className="relative w-full max-w-[320px] aspect-[9/16] rounded-xl overflow-hidden shadow-2xl border border-line/70">
                           <Image
                             src={showcase.image.src}
@@ -182,8 +208,10 @@ export default function CaseStudyOverlay({ project, onClose }: CaseStudyOverlayP
                   return (
                     <div
                       key={idx}
-                      className="w-full aspect-video bg-stage-raised overflow-hidden relative group rounded-xl shadow-2xl border border-line"
+                      className="w-full aspect-video bg-stage-raised overflow-hidden relative group rounded-xl shadow-[0_0_60px_-15px_rgba(251,191,36,0.18)] border border-line/80"
                     >
+                      {/* Sunlight wash over showcase */}
+                      <div className="absolute top-0 inset-x-0 h-36 bg-gradient-to-b from-amber-300/10 via-amber-500/2 to-transparent pointer-events-none z-10" />
                       <video
                         src={showcase.video.src}
                         autoPlay

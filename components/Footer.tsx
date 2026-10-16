@@ -6,14 +6,35 @@ export default function Footer() {
   ];
 
   return (
-    <footer className="relative border-t border-line pt-16 pb-8 px-6 md:px-10">
-      <div className="overflow-hidden border-b border-line pb-16 mb-12 select-none">
-        <div className="flex whitespace-nowrap animate-marquee motion-reduce:animate-none hover:[animation-play-state:paused]">
+    <footer className="relative border-t border-line pt-16 pb-8 px-6 md:px-10 overflow-hidden">
+      {/* Sunlight Aura & Atmospheric Flare */}
+      <div className="relative overflow-hidden border-b border-line pb-16 mb-12 select-none">
+        {/* Soft radial golden sun beam */}
+        <div
+          className="pointer-events-none absolute -top-28 left-1/2 -translate-x-1/2 w-[850px] max-w-full h-[300px] rounded-full bg-[radial-gradient(ellipse_at_center,_rgba(251,191,36,0.22)_0%,_rgba(245,158,11,0.12)_35%,_rgba(217,119,6,0.04)_65%,_transparent_80%)] blur-3xl"
+          aria-hidden="true"
+        />
+        {/* Radiant core sun intensity */}
+        <div
+          className="pointer-events-none absolute -top-16 left-1/2 -translate-x-1/2 w-[440px] h-[150px] rounded-full bg-gradient-to-b from-amber-100/40 via-amber-300/20 to-transparent blur-2xl"
+          aria-hidden="true"
+        />
+        {/* Diagonal sunlight ray streak */}
+        <div
+          className="pointer-events-none absolute -top-20 left-[42%] w-[190px] h-[400px] -rotate-12 bg-gradient-to-b from-amber-100/25 via-amber-400/8 to-transparent blur-2xl"
+          aria-hidden="true"
+        />
+
+        <div className="flex whitespace-nowrap animate-marquee motion-reduce:animate-none hover:[animation-play-state:paused] relative z-10">
           {Array.from({ length: 2 }).map((_, i) => (
             <span
               key={i}
-              className="font-display italic text-[clamp(3rem,12vw,9rem)] leading-none pr-10 text-transparent"
-              style={{ WebkitTextStroke: "1px #27272A" }}
+              className="font-display italic text-[clamp(3.5rem,12vw,9.5rem)] leading-none pr-12 text-[#FFF7ED] select-none tracking-tight font-medium"
+              style={{
+                textShadow:
+                  "0 0 25px rgba(254, 240, 138, 0.55), 0 0 60px rgba(251, 191, 36, 0.4), 0 0 110px rgba(245, 158, 11, 0.25)",
+                WebkitTextStroke: "1px rgba(254, 243, 199, 0.45)",
+              }}
               aria-hidden={i === 1}
             >
               LET&apos;S TALK — LET&apos;S TALK —{" "}
