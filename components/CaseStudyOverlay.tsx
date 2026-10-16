@@ -49,44 +49,53 @@ export default function CaseStudyOverlay({ project, onClose }: CaseStudyOverlayP
           exit={{ opacity: 0 }}
           transition={{ duration: 0.25, ease: "easeOut" }}
         >
-          <div className="sticky top-0 z-10 flex items-center justify-between gap-4 px-6 md:px-10 py-5 md:py-6 bg-stage/80 backdrop-blur-sm border-b border-line">
-            <span className="font-display italic text-base md:text-lg truncate">{project.title}</span>
+          <div className="sticky top-0 z-30 flex items-center justify-between gap-4 px-6 md:px-10 py-4 sm:py-5 bg-[#121417] border-b border-line shadow-lg">
+            <span className="font-display italic text-sm sm:text-base md:text-lg truncate text-bone">{project.title}</span>
             <button
               onClick={onClose}
-              className="eyebrow shrink-0 p-2 -mr-2 rounded-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+              className="eyebrow shrink-0 p-2 -mr-2 rounded-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-accent hover:text-accent transition-colors"
               aria-label="Close case study"
             >
               Close ✕
             </button>
           </div>
 
-          <article className="px-6 md:px-10 pt-14 md:pt-24 pb-32 max-w-6xl mx-auto">
-            <header className="mb-16 md:mb-24">
-              <span className="eyebrow">
+          <article className="px-6 md:px-10 pt-10 sm:pt-14 md:pt-20 pb-32 max-w-6xl mx-auto">
+            <header className="mb-14 md:mb-20">
+              <span className="eyebrow text-smoke">
                 {project.client} — {project.year}
               </span>
-              <h2 className="font-display italic text-clamp-h1 leading-[0.9] mt-4 mb-8">
+              <h2 className="font-display italic text-clamp-h1 leading-[0.9] mt-4 mb-6 sm:mb-8">
                 {project.title}
               </h2>
               <p className="font-body text-clamp-body text-bone-dim max-w-2xl leading-relaxed">
                 {project.excerpt}
               </p>
 
-              <div className="flex flex-col gap-4 mt-8">
-                <div>
-                  <span className="eyebrow text-smoke mr-3">Role:</span>
-                  <span className="eyebrow border border-line px-3 py-2 rounded-full text-accent">{project.role}</span>
-                </div>
-                <div className="flex flex-wrap items-center gap-3">
-                  <span className="eyebrow text-smoke mr-1">Stack:</span>
-                  {project.technologies.map((t) => (
-                    <span
-                      key={t}
-                      className="eyebrow border border-line px-3 py-2 rounded-full"
-                    >
-                      {t}
+              <div className="flex flex-col gap-4 sm:gap-5 mt-8 sm:mt-10">
+                {/* Role Row */}
+                <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-3">
+                  <span className="eyebrow text-smoke shrink-0">Role:</span>
+                  <div className="flex flex-wrap gap-2">
+                    <span className="inline-flex items-center px-3.5 py-1.5 rounded-full border border-line bg-stage-raised/60 text-accent font-mono text-[11px] sm:text-xs tracking-wider uppercase whitespace-nowrap shadow-sm">
+                      {project.role}
                     </span>
-                  ))}
+                  </div>
+                </div>
+
+                {/* Stack Row */}
+                <div className="flex flex-col sm:flex-row sm:items-start gap-2 sm:gap-3">
+                  <span className="eyebrow text-smoke shrink-0 sm:pt-1">Stack:</span>
+                  <div className="flex flex-wrap gap-2">
+                    {project.technologies.map((t) => (
+                      <span
+                        key={t}
+                        className="inline-flex items-center px-3.5 py-1.5 rounded-full border border-line bg-stage-raised/40 text-bone-dim font-mono text-[11px] sm:text-xs tracking-wider uppercase whitespace-nowrap shadow-sm"
+                      >
+                        {t}
+                      </span>
+                    ))}
+                  </div>
                 </div>
               </div>
             </header>
