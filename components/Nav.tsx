@@ -1,39 +1,34 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { useState, useEffect, useRef } from "react";
+import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
 import { testimonials } from "@/lib/data";
 
-const baseSections = [
-  { id: "hero", label: "Hero" },
-  { id: "work", label: "Selected Work" },
-  { id: "services", label: "Services" },
-  { id: "about", label: "About" },
-  { id: "process", label: "Process" },
-  ...(testimonials.length > 0 ? [{ id: "testimonials", label: "Testimonials" }] : []),
-  { id: "contact", label: "Contact" },
+const sections = [
+  { id: "work", label: "Selected Work", act: "01" },
+  { id: "services", label: "Services", act: "02" },
+  { id: "about", label: "About", act: "03" },
+  { id: "process", label: "Process", act: "04" },
+  ...(testimonials.length > 0 ? [{ id: "testimonials", label: "Testimonials", act: "05" }] : []),
+  { id: "contact", label: "Contact", act: testimonials.length > 0 ? "06" : "05" },
 ];
-
-const romanNumerals = ["I", "II", "III", "IV", "V", "VI", "VII"];
-const sections = baseSections.map((s, idx) => ({
-  ...s,
-  act: romanNumerals[idx] || `${idx + 1}`,
-}));
 
 export default function Nav() {
   const [open, setOpen] = useState(false);
+  const targetIdRef = useRef<string | null>(null);
+  const shouldReduceMotion = useReducedMotion();
 
-  const scrollTo = (id: string) => {
-    setOpen(false);
-    const el = document.getElementById(id);
-    if (!el) return;
-    setTimeout(() => {
-      const prefersReducedMotion =
-        typeof window !== "undefined" &&
-        window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-      el.scrollIntoView({ behavior: prefersReducedMotion ? "auto" : "smooth" });
-    }, 150);
-  };
+  // Lock body scroll while open
+  useEffect(() => {
+    if (open) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [open]);
 
   // Close menu on Escape key for accessibility
   useEffect(() => {
@@ -46,13 +41,86 @@ export default function Nav() {
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, [open]);
 
+  const handleScroll = (id: string) => {
+    const el = document.getElementById(id);
+    if (!el) return;
+    const prefersReduced =
+      typeof window !== "undefined" &&
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    el.scrollIntoView({ behavior: prefersReduced ? "auto" : "smooth" });
+  };
+
+  const scrollTo = (id: string) => {
+    if (open) {
+      targetIdRef.current = id;
+      setOpen(false);
+    } else {
+      handleScroll(id);
+    }
+  };
+
+  const handleExitComplete = () => {
+    if (targetIdRef.current) {
+      const id = targetIdRef.current;
+      targetIdRef.current = null;
+      handleScroll(id);
+    }
+  };
+
+  const panelVariants = shouldReduceMotion
+    ? {
+        closed: { opacity: 0 },
+        open: { opacity: 1, transition: { duration: 0.2 } },
+        exit: { opacity: 0, transition: { duration: 0.2 } },
+      }
+    : {
+        closed: { clipPath: "inset(0 0 100% 0)" },
+        open: {
+          clipPath: "inset(0 0 0% 0)",
+          transition: { duration: 0.6, ease: [0.76, 0, 0.24, 1] },
+        },
+        exit: {
+          clipPath: "inset(0 0 100% 0)",
+          transition: { duration: 0.45, ease: [0.76, 0, 0.24, 1] },
+        },
+      };
+
+  const listVariants = {
+    open: {
+      transition: {
+        staggerChildren: 0.06,
+        delayChildren: 0.25,
+      },
+    },
+    closed: {
+      transition: {
+        staggerChildren: 0,
+      },
+    },
+  };
+
+  const linkVariants = {
+    closed: {
+      y: shouldReduceMotion ? 0 : "110%",
+      opacity: shouldReduceMotion ? 0 : 1,
+    },
+    open: {
+      y: 0,
+      opacity: 1,
+      transition: {
+        duration: 0.6,
+        ease: [0.22, 1, 0.36, 1],
+      },
+    },
+  };
+
   return (
     <>
       <header className="fixed top-0 inset-x-0 z-50 py-5 md:py-6 pointer-events-none">
-        <div className="max-w-7xl mx-auto w-full px-6 md:px-12 lg:px-20 flex items-center justify-between pointer-events-auto mix-blend-difference">
+        <div className="max-w-7xl mx-auto w-full px-6 md:px-12 lg:px-20 flex items-center justify-between pointer-events-auto">
           <button
             onClick={() => scrollTo("hero")}
-            className="font-display italic text-lg md:text-xl tracking-tight text-bone hover:text-accent transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-accent rounded-sm"
+            className="font-display font-medium text-lg md:text-xl tracking-tight text-bone hover:text-accent transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-accent rounded-sm"
           >
             Radwan Eldaly
           </button>
@@ -61,25 +129,25 @@ export default function Nav() {
           <nav aria-label="Main navigation" className="hidden md:flex items-center gap-8">
             <button
               onClick={() => scrollTo("work")}
-              className="eyebrow hover:text-accent transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-accent rounded-sm"
+              className="eyebrow text-bone hover:text-accent transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-accent rounded-sm"
             >
               Work
             </button>
             <button
               onClick={() => scrollTo("services")}
-              className="eyebrow hover:text-accent transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-accent rounded-sm"
+              className="eyebrow text-bone hover:text-accent transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-accent rounded-sm"
             >
               Services
             </button>
             <button
               onClick={() => scrollTo("about")}
-              className="eyebrow hover:text-accent transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-accent rounded-sm"
+              className="eyebrow text-bone hover:text-accent transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-accent rounded-sm"
             >
               About
             </button>
             <button
               onClick={() => scrollTo("contact")}
-              className="eyebrow hover:text-accent transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-accent rounded-sm"
+              className="eyebrow text-bone hover:text-accent transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-accent rounded-sm"
             >
               Contact
             </button>
@@ -99,7 +167,7 @@ export default function Nav() {
         </div>
       </header>
 
-      {/* Desktop side rail — quiet, always-present act index */}
+      {/* Desktop side rail */}
       <nav
         aria-label="Section index"
         className="hidden lg:flex fixed right-8 top-1/2 -translate-y-1/2 z-40 flex-col gap-6"
@@ -119,23 +187,18 @@ export default function Nav() {
         ))}
       </nav>
 
-      <AnimatePresence mode="wait">
+      <AnimatePresence mode="wait" onExitComplete={handleExitComplete}>
         {open && (
           <motion.div
             key="fullscreen-nav-menu"
-            initial={{ opacity: 0, y: -12, filter: "blur(6px)" }}
-            animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-            exit={{
-              opacity: 0,
-              y: -14,
-              filter: "blur(6px)",
-              transition: { duration: 0.28, ease: [0.32, 0.72, 0, 1] },
-            }}
-            transition={{ duration: 0.35, ease: [0.32, 0.72, 0, 1] }}
-            className="fixed inset-0 z-[70] bg-stage/95 backdrop-blur-xl flex flex-col justify-between px-6 md:px-16 py-8 md:py-10 overflow-y-auto"
+            initial="closed"
+            animate="open"
+            exit="exit"
+            variants={panelVariants}
+            className="fixed inset-0 z-[70] bg-stage flex flex-col justify-between px-6 md:px-16 py-8 md:py-10 overflow-y-auto"
           >
             <div className="flex items-center justify-between mb-6">
-              <span className="font-display italic text-xl">Radwan Eldaly</span>
+              <span className="font-display font-medium text-xl text-bone">Radwan Eldaly</span>
               <button
                 onClick={() => setOpen(false)}
                 className="group flex items-center gap-2 eyebrow text-bone hover:text-accent focus:outline-none focus-visible:ring-2 focus-visible:ring-accent p-2 -mr-2 rounded-sm transition-colors duration-200"
@@ -146,28 +209,40 @@ export default function Nav() {
               </button>
             </div>
 
-            <ul className="flex flex-col gap-2 md:gap-4 my-auto py-4">
+            <motion.ul
+              variants={listVariants}
+              initial="closed"
+              animate="open"
+              className="flex flex-col gap-3 md:gap-5 my-auto py-4"
+            >
               {sections.map((s) => (
-                <li key={s.id}>
-                  <button
-                    onClick={() => scrollTo(s.id)}
-                    className="flex items-baseline gap-4 sm:gap-6 text-left group focus:outline-none focus-visible:ring-2 focus-visible:ring-accent rounded-md w-full"
-                  >
-                    <span className="font-mono text-xs sm:text-sm text-smoke shrink-0">{s.act}</span>
-                    <span className="font-display italic text-[clamp(1.75rem,6vw,5rem)] leading-[1.1] text-bone group-hover:text-accent transition-colors duration-200 flex-1 min-w-0">
-                      {s.label}
-                    </span>
-                  </button>
+                <li key={s.id} className="overflow-hidden">
+                  <motion.div variants={linkVariants}>
+                    <button
+                      onClick={() => scrollTo(s.id)}
+                      className="flex items-baseline gap-4 sm:gap-6 text-left group focus:outline-none focus-visible:ring-2 focus-visible:ring-accent rounded-md w-full"
+                    >
+                      <span className="font-body text-xs sm:text-sm text-smoke shrink-0">{s.act}</span>
+                      <span className="font-display font-medium tracking-tightest text-[clamp(2rem,6.5vw,5rem)] leading-[1.05] text-bone group-hover:text-accent transition-colors duration-200 flex-1 min-w-0">
+                        {s.label}
+                      </span>
+                    </button>
+                  </motion.div>
                 </li>
               ))}
-            </ul>
+            </motion.ul>
 
-            <div className="flex flex-col md:flex-row justify-between gap-4 eyebrow mt-6 pt-4 border-t border-line/40">
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.4, delay: 0.55 }}
+              className="flex flex-col md:flex-row justify-between gap-4 eyebrow mt-6 pt-4 border-t border-line text-smoke"
+            >
               <span>Cairo, Egypt — Remote</span>
               <a href="mailto:radwaneldaly14@gmail.com" className="hover:text-accent transition-colors">
                 radwaneldaly14@gmail.com
               </a>
-            </div>
+            </motion.div>
           </motion.div>
         )}
       </AnimatePresence>

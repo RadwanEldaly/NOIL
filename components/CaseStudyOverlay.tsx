@@ -2,7 +2,7 @@
 
 import { useEffect } from "react";
 import Image from "next/image";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
 import type { Project } from "@/lib/data";
 
 type CaseStudyOverlayProps = {
@@ -10,12 +10,9 @@ type CaseStudyOverlayProps = {
   onClose: () => void;
 };
 
-/**
- * Act III — Project Case Studies. Opens as a full-bleed overlay with a
- * vertical shutter wipe (an homage to a camera iris/film transition)
- * rather than a fade or a generic modal scale-in.
- */
 export default function CaseStudyOverlay({ project, onClose }: CaseStudyOverlayProps) {
+  const shouldReduceMotion = useReducedMotion();
+
   useEffect(() => {
     if (project) {
       document.body.style.overflow = "hidden";
@@ -47,25 +44,13 @@ export default function CaseStudyOverlay({ project, onClose }: CaseStudyOverlayP
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          transition={{ duration: 0.25, ease: "easeOut" }}
+          transition={{ duration: shouldReduceMotion ? 0.01 : 0.25, ease: "easeOut" }}
         >
-          {/* Ambient Cinematic Sunlight Flare from Top Right */}
-          <div
-            className="pointer-events-none fixed -top-32 right-1/4 w-[750px] max-w-full h-[450px] rounded-full bg-[radial-gradient(ellipse_at_top,_rgba(254,240,138,0.22)_0%,_rgba(251,191,36,0.12)_35%,_rgba(245,158,11,0.04)_65%,_transparent_80%)] blur-3xl z-20"
-            aria-hidden="true"
-          />
-          <div
-            className="pointer-events-none fixed -top-16 right-[35%] w-[380px] h-[220px] rounded-full bg-gradient-to-b from-amber-100/35 via-amber-300/15 to-transparent blur-2xl z-20"
-            aria-hidden="true"
-          />
-          {/* Diagonal Sunbeam Streaks */}
-          <div
-            className="pointer-events-none fixed -top-24 right-[25%] w-[220px] h-[800px] -rotate-45 bg-gradient-to-b from-amber-200/15 via-amber-400/5 to-transparent blur-3xl z-20"
-            aria-hidden="true"
-          />
-
-          <div className="sticky top-0 z-30 flex items-center justify-between gap-4 px-6 md:px-10 py-4 sm:py-5 bg-[#121417] border-b border-line shadow-lg">
-            <span className="font-display italic text-sm sm:text-base md:text-lg truncate text-bone">{project.title}</span>
+          {/* Sticky Header Bar */}
+          <div className="sticky top-0 z-30 flex items-center justify-between gap-4 px-6 md:px-10 py-4 sm:py-5 bg-stage border-b border-line shadow-sm">
+            <span className="font-display font-medium text-sm sm:text-base md:text-lg truncate text-bone">
+              {project.title}
+            </span>
             <button
               onClick={onClose}
               className="eyebrow shrink-0 p-2 -mr-2 rounded-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-accent hover:text-accent transition-colors"
@@ -80,12 +65,7 @@ export default function CaseStudyOverlay({ project, onClose }: CaseStudyOverlayP
               <span className="eyebrow text-smoke">
                 {project.client} — {project.year}
               </span>
-              <h2
-                className="font-display italic text-clamp-h1 leading-[0.9] mt-4 mb-6 sm:mb-8"
-                style={{
-                  textShadow: "0 0 45px rgba(251, 191, 36, 0.2)",
-                }}
-              >
+              <h2 className="font-display font-medium text-clamp-h1 leading-[0.95] tracking-tightest mt-4 mb-6 sm:mb-8 text-bone">
                 {project.title}
               </h2>
               <p className="font-body text-clamp-body text-bone-dim max-w-2xl leading-relaxed">
@@ -97,7 +77,7 @@ export default function CaseStudyOverlay({ project, onClose }: CaseStudyOverlayP
                 <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-3">
                   <span className="eyebrow text-smoke shrink-0">Role:</span>
                   <div className="flex flex-wrap gap-2">
-                    <span className="inline-flex items-center px-3.5 py-1.5 rounded-full border border-line bg-stage-raised/60 text-accent font-mono text-[11px] sm:text-xs tracking-wider uppercase whitespace-nowrap shadow-sm">
+                    <span className="inline-flex items-center px-3.5 py-1.5 rounded-full border border-line bg-stage-raised text-accent-dim font-body text-[11px] sm:text-xs tracking-wider uppercase whitespace-nowrap">
                       {project.role}
                     </span>
                   </div>
@@ -110,7 +90,7 @@ export default function CaseStudyOverlay({ project, onClose }: CaseStudyOverlayP
                     {project.technologies.map((t) => (
                       <span
                         key={t}
-                        className="inline-flex items-center px-3.5 py-1.5 rounded-full border border-line bg-stage-raised/40 text-bone-dim font-mono text-[11px] sm:text-xs tracking-wider uppercase whitespace-nowrap shadow-sm"
+                        className="inline-flex items-center px-3.5 py-1.5 rounded-full border border-line bg-stage-raised text-bone-dim font-body text-[11px] sm:text-xs tracking-wider uppercase whitespace-nowrap"
                       >
                         {t}
                       </span>
@@ -121,10 +101,8 @@ export default function CaseStudyOverlay({ project, onClose }: CaseStudyOverlayP
             </header>
 
             {project.mediaType === "image" ? (
-              <div className="relative w-full aspect-[4/3] sm:aspect-[16/9] bg-stage-raised mb-16 md:mb-24 overflow-hidden rounded-xl shadow-[0_0_70px_-15px_rgba(251,191,36,0.22)] border border-line/80 flex items-center justify-center p-4 sm:p-8 group">
-                {/* Sunlight wash over media */}
-                <div className="absolute top-0 inset-x-0 h-44 bg-gradient-to-b from-amber-300/12 via-amber-500/3 to-transparent pointer-events-none z-10" />
-                <div className="relative h-full w-full max-w-xs sm:max-w-sm aspect-[9/16] rounded-lg overflow-hidden shadow-2xl border border-line/60">
+              <div className="relative w-full aspect-[4/3] sm:aspect-[16/9] bg-stage-surface mb-16 md:mb-24 overflow-hidden rounded-2xl border border-line flex items-center justify-center p-4 sm:p-8 group">
+                <div className="relative h-full w-full max-w-xs sm:max-w-sm aspect-[9/16] rounded-xl overflow-hidden border border-line bg-stage">
                   <Image
                     src={project.coverImage || project.coverVideo}
                     alt={project.title}
@@ -136,9 +114,7 @@ export default function CaseStudyOverlay({ project, onClose }: CaseStudyOverlayP
                 </div>
               </div>
             ) : (
-              <div className="relative w-full aspect-[16/9] bg-stage-raised mb-16 md:mb-24 overflow-hidden rounded-xl shadow-[0_0_70px_-15px_rgba(251,191,36,0.22)] border border-line/80 group">
-                {/* Sunlight wash over media */}
-                <div className="absolute top-0 inset-x-0 h-44 bg-gradient-to-b from-amber-300/12 via-amber-500/3 to-transparent pointer-events-none z-10" />
+              <div className="relative w-full aspect-[16/9] bg-stage-surface mb-16 md:mb-24 overflow-hidden rounded-2xl border border-line group">
                 <video
                   src={project.coverVideo}
                   autoPlay
@@ -148,14 +124,13 @@ export default function CaseStudyOverlay({ project, onClose }: CaseStudyOverlayP
                   preload="metadata"
                   className="w-full h-full object-cover transition-transform duration-300 ease-cinematic group-hover:scale-[1.01] pointer-events-none"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-stage/40 via-transparent to-transparent pointer-events-none" />
               </div>
             )}
 
             <div className="grid sm:grid-cols-3 gap-6 md:gap-6 mb-20 md:mb-28 border-y border-line py-8 md:py-10">
               {project.stats.map((stat) => (
                 <div key={stat.label} className="min-w-0">
-                  <p className="font-display italic text-2xl sm:text-3xl md:text-4xl text-accent break-words">
+                  <p className="font-display font-medium text-2xl sm:text-3xl md:text-4xl text-accent-dim break-words">
                     {stat.value}
                   </p>
                   <p className="eyebrow mt-2">{stat.label}</p>
@@ -183,10 +158,8 @@ export default function CaseStudyOverlay({ project, onClose }: CaseStudyOverlayP
                 if (showcase.image) {
                   return (
                     <div key={idx} className="flex flex-col gap-3">
-                      <div className="w-full min-h-[380px] sm:min-h-[500px] bg-stage-raised/80 flex items-center justify-center p-6 md:p-12 rounded-xl shadow-[0_0_60px_-15px_rgba(251,191,36,0.18)] border border-line/80 relative overflow-hidden group">
-                        {/* Sunlight wash over showcase */}
-                        <div className="absolute top-0 inset-x-0 h-36 bg-gradient-to-b from-amber-300/10 via-amber-500/2 to-transparent pointer-events-none z-10" />
-                        <div className="relative w-full max-w-[320px] aspect-[9/16] rounded-xl overflow-hidden shadow-2xl border border-line/70">
+                      <div className="w-full min-h-[380px] sm:min-h-[500px] bg-stage-surface flex items-center justify-center p-6 md:p-12 rounded-2xl border border-line relative overflow-hidden group">
+                        <div className="relative w-full max-w-[320px] aspect-[9/16] rounded-xl overflow-hidden border border-line bg-stage">
                           <Image
                             src={showcase.image.src}
                             alt={showcase.image.caption || project.title}
@@ -208,10 +181,8 @@ export default function CaseStudyOverlay({ project, onClose }: CaseStudyOverlayP
                   return (
                     <div
                       key={idx}
-                      className="w-full aspect-video bg-stage-raised overflow-hidden relative group rounded-xl shadow-[0_0_60px_-15px_rgba(251,191,36,0.18)] border border-line/80"
+                      className="w-full aspect-video bg-stage-surface overflow-hidden relative group rounded-2xl border border-line"
                     >
-                      {/* Sunlight wash over showcase */}
-                      <div className="absolute top-0 inset-x-0 h-36 bg-gradient-to-b from-amber-300/10 via-amber-500/2 to-transparent pointer-events-none z-10" />
                       <video
                         src={showcase.video.src}
                         autoPlay
@@ -221,7 +192,6 @@ export default function CaseStudyOverlay({ project, onClose }: CaseStudyOverlayP
                         preload="metadata"
                         className="w-full h-full object-cover transition-transform duration-300 ease-cinematic group-hover:scale-[1.01] pointer-events-none"
                       />
-                      <div className="absolute inset-0 bg-gradient-to-t from-stage/30 via-transparent to-transparent pointer-events-none" />
                     </div>
                   );
                 }
@@ -232,14 +202,14 @@ export default function CaseStudyOverlay({ project, onClose }: CaseStudyOverlayP
             <div className="flex justify-between items-center gap-4 pt-10 border-t border-line flex-wrap sm:flex-nowrap">
               <button
                 onClick={onClose}
-                  className="eyebrow flex items-center gap-2 p-2 -ml-2 rounded-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-accent hover:text-accent transition-colors"
+                className="eyebrow flex items-center gap-2 p-2 -ml-2 rounded-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-accent hover:text-accent transition-colors"
               >
                 ← Back to Projects
               </button>
               <a
                 href="#contact"
                 onClick={onClose}
-                  className="eyebrow text-accent p-2 -mr-2 rounded-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+                className="eyebrow text-accent-dim hover:text-accent p-2 -mr-2 rounded-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-accent transition-colors"
               >
                 Start a project →
               </a>

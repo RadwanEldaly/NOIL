@@ -12,12 +12,12 @@
 
 html {
   scroll-behavior: smooth;
-  background: #121417;
+  background: theme('colors.stage');
 }
 
 body {
-  background-color: #121417;
-  color: #F4F4F5;
+  background-color: theme('colors.stage');
+  color: theme('colors.bone');
 }
 
 button,
@@ -26,29 +26,29 @@ a {
 }
 
 ::selection {
-  background: #00A67E;
-  color: #121417;
+  background: theme('colors.accent');
+  color: theme('colors.stage');
 }
 
-/* Scrollbar — thin, dark, unobtrusive */
+/* Scrollbar — thin, unobtrusive */
 ::-webkit-scrollbar {
   width: 6px;
 }
 ::-webkit-scrollbar-track {
-  background: #121417;
+  background: theme('colors.stage');
 }
 ::-webkit-scrollbar-thumb {
-  background: #27272A;
+  background: theme('colors.line');
   border-radius: 0;
 }
 
 /* Utility: eyebrow label */
 .eyebrow {
-  font-family: var(--font-jetbrains), monospace;
-  font-size: 0.7rem;
-  letter-spacing: 0.35em;
+  font-family: var(--font-inter), sans-serif;
+  font-size: 0.75rem;
+  letter-spacing: 0.02em;
   text-transform: uppercase;
-  color: #71717A;
+  color: theme('colors.smoke');
 }
 
 /* Utility: hairline divider */
@@ -58,8 +58,8 @@ a {
   background: linear-gradient(
     to right,
     transparent,
-    #27272A 15%,
-    #27272A 85%,
+    theme('colors.line') 15%,
+    theme('colors.line') 85%,
     transparent
   );
 }
@@ -67,7 +67,7 @@ a {
 /* Focus visibility for accessibility, without breaking the aesthetic */
 a:focus-visible,
 button:focus-visible {
-  outline: 2px solid #00A67E;
+  outline: 2px solid theme('colors.accent');
   outline-offset: 4px;
 }
 

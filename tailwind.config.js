@@ -8,20 +8,21 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        stage: "#121417",
-        "stage-raised": "#181B20",
-        "stage-surface": "#20242C",
-        bone: "#F4F4F5",
-        "bone-dim": "#A1A1AA",
-        smoke: "#71717A",
-        line: "#27272A",
-        accent: "#00A67E",
-        "accent-dim": "#008060",
+        // Light editorial theme: stage is light background, bone is dark ink
+        stage: "#F6F5F1", // page background (off-white)
+        "stage-raised": "#FFFFFF", // cards
+        "stage-surface": "#EDEBE5", // image placeholders / neutral media bg
+        bone: "#0B0B0C", // main text
+        "bone-dim": "#6B6B70", // body copy
+        smoke: "#74747A", // small labels
+        line: "#E4E2DB", // borders
+        accent: "#00A67E", // dots, fills, hover only
+        "accent-dim": "#008060", // accent used as TEXT (AA contrast)
       },
       fontFamily: {
-        display: ["var(--font-fraunces)", "serif"],
-        body: ["var(--font-archivo)", "sans-serif"],
-        mono: ["var(--font-jetbrains)", "monospace"],
+        display: ["var(--font-inter-tight)", "sans-serif"],
+        body: ["var(--font-inter)", "sans-serif"],
+        mono: ["var(--font-inter)", "sans-serif"],
       },
       fontSize: {
         "clamp-hero": "clamp(3.5rem, 12vw, 11rem)",

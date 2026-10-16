@@ -7,6 +7,7 @@ export type Project = {
   index: string;
   slug: string;
   title: string;
+  shortTitle?: string;
   client: string;
   projectContext?: string;
   year: string;
@@ -15,6 +16,8 @@ export type Project = {
   technologies: string[];
   coverVideo: string;
   coverImage?: string;
+  poster?: string;
+  fit?: "cover" | "contain";
   mediaType: "image" | "video";
   excerpt: string;
   challenge: string;
@@ -39,6 +42,7 @@ export const projects: Project[] = [
     index: "01",
     slug: "disney-kidz-navigation-drawer",
     title: "Mobile Navigation Drawer & Category Architecture",
+    shortTitle: "Mobile Menu Drawer",
     client: "Disney Kidz",
     projectContext: "Disney Kidz Storefront Customization",
     year: "2026",
@@ -47,6 +51,7 @@ export const projects: Project[] = [
     technologies: ["Custom CSS", "Shopify Theme Styling", "Mobile Touch UX", "Dawn Theme"],
     coverVideo: "/projects/disney-kidz-menu-drawer.png",
     coverImage: "/projects/disney-kidz-menu-drawer.png",
+    fit: "contain",
     mediaType: "image",
     excerpt:
       "A custom mobile slide-out navigation styling overhaul replacing unstyled, text-heavy menus with visual product category cards, promotional tags, and direct loyalty club integration.",
@@ -80,6 +85,7 @@ export const projects: Project[] = [
     index: "02",
     slug: "disney-kidz-cart-drawer",
     title: "Slide-Out Ajax Cart Drawer & Quick Checkout",
+    shortTitle: "Ajax Cart Drawer",
     client: "Disney Kidz",
     projectContext: "Disney Kidz Storefront Customization",
     year: "2026",
@@ -88,6 +94,7 @@ export const projects: Project[] = [
     technologies: ["Custom CSS", "Ajax Cart Styling", "Mobile UX", "Shopify Dawn"],
     coverVideo: "/projects/disney-kidz-cart-drawer.png",
     coverImage: "/projects/disney-kidz-cart-drawer.png",
+    fit: "contain",
     mediaType: "image",
     excerpt:
       "A slide-out Ajax cart styling overhaul featuring clean quantity controls, real-time total recalculation, variant breakdown, and direct checkout acceleration.",
@@ -115,6 +122,7 @@ export const projects: Project[] = [
     index: "03",
     slug: "disney-kidz-curated-categories",
     title: "Curated Collections: 'Shop by Category' Section",
+    shortTitle: "Shop by Category",
     client: "Disney Kidz",
     projectContext: "Disney Kidz Storefront Customization",
     year: "2026",
@@ -168,13 +176,15 @@ export const projects: Project[] = [
     index: "04",
     slug: "disney-kidz-campaign-hero",
     title: "Campaign Hero & Seasonal Banner Section",
+    shortTitle: "Campaign Hero",
     client: "Disney Kidz",
     projectContext: "Disney Kidz Storefront Customization",
     year: "2026",
     category: "Shopify / Custom Section",
     role: "Shopify Theme Developer",
     technologies: ["Shopify Liquid", "Custom CSS", "Theme Editor Schema", "Responsive UI"],
-    coverVideo: "/projects/Screen Recording 2026-08-03 163454.mp4",
+    coverVideo: "/projects/campaign-hero.mp4",
+    poster: "/projects/campaign-hero-poster.jpg",
     mediaType: "video",
     excerpt:
       "A mobile-first campaign hero section built for a Shopify children's clothing store, pairing bold typography with responsive layout controls and theme customizer settings.",
@@ -190,20 +200,22 @@ export const projects: Project[] = [
       { label: "Component", value: "Custom Hero" },
     ],
     showcases: [
-      { video: { src: "/projects/Screen Recording 2026-08-03 163454.mp4" } },
+      { video: { src: "/projects/campaign-hero.mp4" } },
     ],
   },
   {
     index: "05",
     slug: "disney-kidz-brand-carousel",
     title: "Character & Brand Discovery Carousel",
+    shortTitle: "Brand Carousel",
     client: "Disney Kidz",
     projectContext: "Disney Kidz Storefront Customization",
     year: "2026",
     category: "Shopify / Interactive Component",
     role: "Shopify Theme Developer",
     technologies: ["Shopify Liquid", "Vanilla JavaScript", "CSS Carousel", "Responsive Design"],
-    coverVideo: "/projects/Screen Recording 2026-08-03 163620.mp4",
+    coverVideo: "/projects/brand-carousel.mp4",
+    poster: "/projects/brand-carousel-poster.jpg",
     mediaType: "video",
     excerpt:
       "A custom brand discovery carousel letting shoppers filter collections by character — built in Shopify Liquid and vanilla JavaScript with smooth touch navigation.",
@@ -219,20 +231,22 @@ export const projects: Project[] = [
       { label: "Component", value: "Brand Slider" },
     ],
     showcases: [
-      { video: { src: "/projects/Screen Recording 2026-08-03 163620.mp4" } },
+      { video: { src: "/projects/brand-carousel.mp4" } },
     ],
   },
   {
     index: "06",
     slug: "disney-kidz-product-cards",
     title: "Product Cards & Dynamic Discount Badges",
+    shortTitle: "Product Cards",
     client: "Disney Kidz",
     projectContext: "Disney Kidz Storefront Customization",
     year: "2025",
     category: "Shopify / Collection Optimization",
     role: "Shopify Theme Developer",
     technologies: ["Shopify Liquid", "Custom CSS", "Shopify Cart API", "Dawn Theme"],
-    coverVideo: "/projects/Screen Recording 2026-08-03 163724.mp4",
+    coverVideo: "/projects/product-cards.mp4",
+    poster: "/projects/product-cards-poster.jpg",
     mediaType: "video",
     excerpt:
       "A responsive product card component featuring dynamic discount badges and an inline quick add-to-cart flow for collection grids.",
@@ -248,20 +262,22 @@ export const projects: Project[] = [
       { label: "Component", value: "Product Card" },
     ],
     showcases: [
-      { video: { src: "/projects/Screen Recording 2026-08-03 163724.mp4" } },
+      { video: { src: "/projects/product-cards.mp4" } },
     ],
   },
   {
     index: "07",
     slug: "disney-kidz-branded-footer",
     title: "Modular Storefront Theme Footer",
+    shortTitle: "Theme Footer",
     client: "Disney Kidz",
     projectContext: "Disney Kidz Storefront Customization",
     year: "2026",
     category: "Shopify / Custom Section",
     role: "Shopify Theme Developer",
     technologies: ["Shopify Liquid", "CSS Grid", "Custom Sections", "Responsive Design"],
-    coverVideo: "/projects/Screen Recording 2026-08-03 152032.mp4",
+    coverVideo: "/projects/theme-footer.mp4",
+    poster: "/projects/theme-footer-poster.jpg",
     mediaType: "video",
     excerpt:
       "A custom multi-column footer section designed to reinforce brand identity while surfacing policy links, social media, and newsletter signups.",
@@ -277,7 +293,7 @@ export const projects: Project[] = [
       { label: "Component", value: "Theme Footer" },
     ],
     showcases: [
-      { video: { src: "/projects/Screen Recording 2026-08-03 152032.mp4" } },
+      { video: { src: "/projects/theme-footer.mp4" } },
     ],
   },
 ];
@@ -367,3 +383,9 @@ export type Testimonial = {
 };
 
 export const testimonials: Testimonial[] = [];
+
+export const socials = [
+  { label: "LinkedIn", url: "https://linkedin.com/in/radwan-eldaly-a0b079353" },
+  { label: "X", url: "https://x.com/EldalyRadwan" },
+  { label: "Instagram", url: "https://instagram.com/radwan.eldaly.1" },
+];

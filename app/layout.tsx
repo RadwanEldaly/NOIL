@@ -1,26 +1,18 @@
 import type { Metadata } from "next";
-import { Fraunces, Archivo, JetBrains_Mono } from "next/font/google";
+import { Inter_Tight, Inter } from "next/font/google";
 import "./globals.css";
 
-const fraunces = Fraunces({
+const interTight = Inter_Tight({
   subsets: ["latin"],
-  variable: "--font-fraunces",
-  weight: ["300", "400", "500", "600"],
-  style: ["normal", "italic"],
+  variable: "--font-inter-tight",
+  weight: ["400", "500", "600"],
   display: "swap",
 });
 
-const archivo = Archivo({
+const inter = Inter({
   subsets: ["latin"],
-  variable: "--font-archivo",
+  variable: "--font-inter",
   weight: ["400", "500", "600", "700"],
-  display: "swap",
-});
-
-const jetbrains = JetBrains_Mono({
-  subsets: ["latin"],
-  variable: "--font-jetbrains",
-  weight: ["400", "500"],
   display: "swap",
 });
 
@@ -91,7 +83,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${fraunces.variable} ${archivo.variable} ${jetbrains.variable}`}>
+    <html lang="en" className={`${interTight.variable} ${inter.variable}`}>
       <head>
         <script
           type="application/ld+json"
@@ -101,7 +93,7 @@ export default function RootLayout({
       <body className="font-body bg-stage text-bone antialiased">
         <a
           href="#main"
-          className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:bg-accent focus:text-stage focus:px-4 focus:py-2 focus:font-mono focus:text-xs"
+          className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:bg-accent focus:text-stage focus:px-4 focus:py-2 focus:font-body focus:text-xs"
         >
           Skip to content
         </a>

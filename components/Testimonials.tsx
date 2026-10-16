@@ -28,9 +28,9 @@ export default function Testimonials() {
   return (
     <section
       id="testimonials"
-      className="relative py-32 md:py-48 px-6 md:px-10 border-t border-line overflow-hidden"
+      className="relative py-32 md:py-48 px-6 md:px-10 border-t border-line overflow-hidden scroll-mt-20"
     >
-      <span className="eyebrow">Act VI — In Their Words</span>
+      <span className="eyebrow">In Their Words</span>
 
       <div
         className="min-h-[260px] md:min-h-[220px] flex items-center mt-10"
@@ -48,7 +48,7 @@ export default function Testimonials() {
             transition={{ duration: 0.25, ease: "easeOut" }}
             className="max-w-4xl"
           >
-            <p className="font-display italic text-[clamp(1.75rem,5vw,3.5rem)] leading-[1.15] text-bone">
+            <p className="font-display font-medium text-[clamp(1.75rem,5vw,3.5rem)] leading-[1.15] text-bone">
               &ldquo;{testimonial.quote}&rdquo;
             </p>
             <footer className="mt-8 eyebrow flex items-center gap-3">
