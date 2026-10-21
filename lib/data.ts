@@ -184,7 +184,6 @@ export const projects: Project[] = [
     role: "Shopify Theme Developer",
     technologies: ["Shopify Liquid", "Custom CSS", "Theme Editor Schema", "Responsive UI"],
     coverVideo: "/projects/campaign-hero.mp4",
-    poster: "/projects/campaign-hero-poster.jpg",
     mediaType: "video",
     excerpt:
       "A mobile-first campaign hero section built for a Shopify children's clothing store, pairing bold typography with responsive layout controls and theme customizer settings.",
@@ -215,7 +214,6 @@ export const projects: Project[] = [
     role: "Shopify Theme Developer",
     technologies: ["Shopify Liquid", "Vanilla JavaScript", "CSS Carousel", "Responsive Design"],
     coverVideo: "/projects/brand-carousel.mp4",
-    poster: "/projects/brand-carousel-poster.jpg",
     mediaType: "video",
     excerpt:
       "A custom brand discovery carousel letting shoppers filter collections by character — built in Shopify Liquid and vanilla JavaScript with smooth touch navigation.",
@@ -246,7 +244,6 @@ export const projects: Project[] = [
     role: "Shopify Theme Developer",
     technologies: ["Shopify Liquid", "Custom CSS", "Shopify Cart API", "Dawn Theme"],
     coverVideo: "/projects/product-cards.mp4",
-    poster: "/projects/product-cards-poster.jpg",
     mediaType: "video",
     excerpt:
       "A responsive product card component featuring dynamic discount badges and an inline quick add-to-cart flow for collection grids.",
@@ -277,7 +274,6 @@ export const projects: Project[] = [
     role: "Shopify Theme Developer",
     technologies: ["Shopify Liquid", "CSS Grid", "Custom Sections", "Responsive Design"],
     coverVideo: "/projects/theme-footer.mp4",
-    poster: "/projects/theme-footer-poster.jpg",
     mediaType: "video",
     excerpt:
       "A custom multi-column footer section designed to reinforce brand identity while surfacing policy links, social media, and newsletter signups.",
